@@ -1,4 +1,0 @@
-﻿[*.cs]
-
-# xUnit1004: Test methods should not be skipped
-dotnet_diagnostic.xUnit1004.severity = none
