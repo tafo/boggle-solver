@@ -1,5 +1,5 @@
 ## PREHISTORIC SOLVER
-[`Source Code`](https://github.com/tafo/BoggleSolver/blob/PrehistoricSolver/BoggleSolver.Library/SlowSolver.cs)
+[`Source Code`](https://github.com/tafo/BoggleSolver/blob/SlowSolver/BoggleSolver.Library/SlowSolver.cs)
 ```
 Based on DFS(DepthFirstSearch) approach
 
