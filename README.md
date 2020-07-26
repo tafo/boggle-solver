@@ -19,4 +19,4 @@ Not satisfied!
 
 So? 
 ```
-[`continue`](https://github.com/tafo/BoggleSolver/tree/BinarySearchSolver)
+[`continue`](https://github.com/tafo/BoggleSolver/tree/BinarySolver)
