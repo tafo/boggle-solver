@@ -1,53 +1,22 @@
-## BOGGLE SOLVER
+## PREHISTORIC SOLVER
+[`Source Code`](https://github.com/tafo/BoggleSolver/blob/PrehistoricSolver/BoggleSolver.Library/SlowSolver.cs)
 ```
-Finds all possible words in a boggle
-```
-## BOGGLE
-```
-A game that is played using a grid of letters
+Based on DFS(DepthFirstSearch) approach
 
-Players attempt to find words in sequences of adjacent letters
-```
-```
-Players can start with any letter
+Not optimized
 
-Previously used letters can not be used again
+The start point of the evolution steps
 
-Words must be at least 3 characters
+Check chains by linear search method
 
-Words must be at most MxN characters
-
-Points are calculated according to the following table
-```
-Word Length | Points
---| --
-3 | 1
-4 | 1
-5 | 2
-6 | 3
-7 | 5
-8+| 11
-```
-Sample 3x3 Grid
+Called SlowSolver
 {
-    A B C 
-    K E M
-    X Y Z 
-}
-
-Sample Dictionary
-{ 
-    "ABE", "ABY", "ABLE", "BAK", "KEY"
-}
-
-All Valid Words
-{
-    "ABE", "BAK", "KEY"
+    Because it is checked with a 4x4 boggle!
 }
 ```
+```csharp
+Not satisfied!
 
+So? 
 ```
-A boggle solver was implemented
-```
-
-[`continue`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
+[`continue`](https://github.com/tafo/BoggleSolver/tree/BinarySearchSolver)
