@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace BoggleSolver.Library
 {
-    public class SlowSolver
+    public class HashSetSolver
     {
-        public string[] Words { get; set; }
+        public HashSet<string> Words { get; set; }
 
         public List<string> Run(BoggleModel boggle)
         {
@@ -28,7 +28,7 @@ namespace BoggleSolver.Library
 
                 chain = $"{chain}{boggle.Grid[rowIndex][colIndex]}";
 
-                if (Array.Exists(Words, word => word == chain)) result.Add(chain);
+                if (Words.Contains(chain)) result.Add(chain);
 
                 var rowMin = Math.Max(0, rowIndex - 1);
                 var colMin = Math.Max(0, colIndex - 1);

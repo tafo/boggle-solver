@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System.Collections.Generic;
+using System.Diagnostics;
 using BoggleSolver.Library;
 using FluentAssertions;
 using Xunit;
@@ -16,9 +17,9 @@ namespace BoggleSolver.Tests
         }
 
         [Fact]
-        public void Test_SlowSolver()
+        public void Test_HashSetSolver()
         {
-            var solver = new SlowSolver { Words = Size.Test.ToArray() };
+            var solver = new HashSetSolver {Words = new HashSet<string>(Size.Test.ToArray())};
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
@@ -29,9 +30,9 @@ namespace BoggleSolver.Tests
         }
 
         [Fact]
-        public void Test_BinarySolver()
+        public void Test_BinarySearchSolver()
         {
-            var solver = new BinarySolver { Words = Size.Test.ToArray() };
+            var solver = new BinarySolver {Words = Size.Test.ToArray()};
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
