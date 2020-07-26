@@ -39,5 +39,4 @@ msbuild.wrn
 # Not Completed ...
 Ignore/
 BoggleSolver.Benchmark/
-
-*.md
+README.md
