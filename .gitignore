@@ -40,4 +40,5 @@ msbuild.wrn
 Ignore/
 BoggleSolver.Benchmark/
 
+# Documentation
 README.md
