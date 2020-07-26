@@ -1,3 +1,7 @@
+## BOGGLE SOLVER
+```
+Finds all possible words in a boggle
+```
 ## BOGGLE
 ```
 A game that is played using a grid of letters
@@ -42,10 +46,6 @@ All Valid Words
 }
 ```
 
-## BOGGLE SOLVER
-```
-Finds all possible words
-```
 ```
 A boggle solver was implemented
 ```
