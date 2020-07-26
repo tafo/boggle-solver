@@ -50,4 +50,4 @@ All Valid Words
 A boggle solver was implemented
 ```
 
-[`continue`](https://github.com/tafo/BoggleSolver/tree/PrehistoricSolver)
+[`continue`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
