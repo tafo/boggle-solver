@@ -8,8 +8,4 @@
     <PackageReference Include="Microsoft.Extensions.Options" Version="3.1.6" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Dictionary\" />
-  </ItemGroup>
-
 </Project>
