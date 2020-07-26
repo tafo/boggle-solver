@@ -14,7 +14,7 @@ Called SlowSolver
     Because it is very slow for a 4x4 boggle
 }
 ```
-```csharp
+```
 Not satisfied!
 
 So? 
