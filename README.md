@@ -7,11 +7,11 @@ Not optimized
 
 The start point of the evolution steps
 
-Check chains by linear search method
+Uses linear search for word checking
 
 Called SlowSolver
 {
-    Because it is checked with a 4x4 boggle!
+    Because it is very slow for a 4x4 boggle
 }
 ```
 ```csharp
