@@ -1,53 +1,53 @@
-## BINARY SEARCH
+## BOGGLE SOLVER
 ```
-Another solver was implemented by using binary search
+Finds all possible words in a boggle
+```
+## BOGGLE
+```
+A game that is played using a grid of letters
+
+Players attempt to find words in sequences of adjacent letters
+```
+```
+Players can start with any letter
+
+Previously used letters can not be used again
+
+Words must be at least 3 characters
+
+Words must be at most MxN characters
+
+Points are calculated according to the following table
+```
+Word Length | Points
+--| --
+3 | 1
+4 | 1
+5 | 2
+6 | 3
+7 | 5
+8+| 11
+```
+Sample 3x3 Grid
 {
-    Dictionaries are already sorted!
+    A B C 
+    K E M
+    X Y Z 
+}
+
+Sample Dictionary
+{ 
+    "ABE", "ABY", "ABLE", "BAK", "KEY"
+}
+
+All Valid Words
+{
+    "ABE", "BAK", "KEY"
 }
 ```
-[`Source Code`](https://github.com/tafo/BoggleSolver/blob/BinarySolver/BoggleSolver.Library/BinarySolver.cs)
-```
-SlowSolver vs BinarySolver
-{
-    Windows 10.0.18362.959 (1903/May2019Update/19H1)
-    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
 
-    Dict
-    {
-        Maxi    = 281,279 Words
-        Midi    = 129,552 Words
-        Mini    =  39,096 Words    
-    }
+```
+A boggle solver was implemented
+```
 
-    Boggle
-    {
-        [
-            [ "W", "O", "R" ],
-            [ "C", "D", "L" ],
-            [ "K", "A", "M" ]
-        ]
-    }
-}
-```
-| Solver | Dict |          Mean |       Error |      StdDev |
-|--------|----- |--------------:|------------:|------------:|
-| Slow   | Mini |  2,245.407 ms |  31.4585 ms |  20.8078 ms |
-| Binary | Mini |     18.564 ms |    1.222 ms |   0.8081 ms |
-| Slow   | Midi |  7,669.591 ms | 263.0141 ms | 173.9676 ms |
-| Binary | Midi |     29.315 ms |   2.102 ms  |   1.3902 ms |
-| Slow   | Maxi | 16,611.425 ms | 385.2566 ms | 254.8234 ms |
-| Binary | Maxi |     61.492 ms |   3.7198 ms |   2.4604 ms |
-```
-Result?
-{
-    Significant improvement in the performance !!!
-
-    Delete SlowSolver in the next step
-}
-```
-```
-But, not satisfied!
-
-So?
-```
-[`continue`](https://github.com/tafo/BoggleSolver/tree/HashSetSolver)
+[`continue`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
