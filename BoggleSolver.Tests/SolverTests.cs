@@ -27,5 +27,18 @@ namespace BoggleSolver.Tests
             result.ForEach(x => _testOutput.WriteLine(x));
             result.Count.Should().Be(TestData.Boggle.Count);
         }
+
+        [Fact]
+        public void Test_BinarySolver()
+        {
+            var solver = new BinarySolver { Words = Size.Test.ToArray() };
+            var timer = Stopwatch.StartNew();
+            var result = solver.Run(TestData.Boggle);
+            timer.Stop();
+
+            _testOutput.WriteLine($"Found {result.Count} words in {timer.Elapsed}");
+            result.ForEach(x => _testOutput.WriteLine(x));
+            result.Count.Should().Be(TestData.Boggle.Count);
+        }
     }
 }
