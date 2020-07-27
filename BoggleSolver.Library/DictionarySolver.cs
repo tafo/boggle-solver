@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 namespace BoggleSolver.Library
 {
-    public class HashSetSolver
+    public class DictionarySolver
     {
-        public HashSet<string> Words { get; set; }
+        public Dictionary<char, HashSet<string>> Words { get; set; }
 
         public List<string> Run(BoggleModel boggle)
         {
@@ -28,7 +28,7 @@ namespace BoggleSolver.Library
 
                 chain = $"{chain}{boggle.Grid[rowIndex][colIndex]}";
 
-                if (Words.Contains(chain)) result.Add(chain);
+                if (Words[chain[0]].Contains(chain)) result.Add(chain);
 
                 var rowMin = Math.Max(0, rowIndex - 1);
                 var colMin = Math.Max(0, colIndex - 1);
@@ -49,6 +49,6 @@ namespace BoggleSolver.Library
             }
         }
 
-        public override string ToString() => "HashSet";
+        public override string ToString() => "Dictionary";
     }
 }
