@@ -54,7 +54,12 @@ namespace BoggleSolver.Library
             var root = new LetterTrie();
             var words = GetWords(size);
             LetterTrie.IsReadOnly = false;
-            Array.ForEach(words, word => { root[word[0]][word[1]][word[2]].Words.Add(word); });
+            Array.ForEach(words, word =>
+            {
+                var trie = root[word[0]][word[1]][word[2]];
+                trie.Words.Add(word);
+            });
+            LetterTrie.Level = 4;
             LetterTrie.IsReadOnly = true;
             return root;
         }

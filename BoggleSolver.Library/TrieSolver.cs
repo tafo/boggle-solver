@@ -62,11 +62,11 @@ namespace BoggleSolver.Library
 
                 if (chain.Length > boggle.Size) return false;
 
-                var ABCs = RootTrie[chain[0]]?[chain[1]]?[chain[2]];
+                var trie = RootTrie[chain[0]]?[chain[1]]?[chain[2]];
 
-                if (ABCs == null) return false;
+                if (trie == null) return false;
 
-                if (ABCs.Words.Contains(chain)) result.Add(chain);
+                if(trie.Words.Contains(chain)) result.Add(chain);
 
                 return true;
             }
