@@ -1,118 +1,56 @@
-## TRIE
+## BOGGLE
 ```
-How do we search a word in a dictionary?
-```
-[Trie@Wikipedia](https://en.wikipedia.org/wiki/Trie)
-```
-What is Trie?
+A game that is played using a grid of letters
 
-It is actually a reusability method.
+Players attempt to find words in sequences of adjacent letters
+```
+```
+Players can start with any letter
 
-Check the following words
+Previously used letters can not be used again
+
+Words must be at least 3 characters
+
+Words must be at most MxN characters
 {
-    ACE
-    ACT
-    ADD
+    M = The number of rows
+    N = The number of columns
 }
 
-Is there any repeating letter?
+Points are calculated according to the following table
+```
+Word Length | Points
+--| --
+3 | 1
+4 | 1
+5 | 2
+6 | 3
+7 | 5
+8+| 11
+```
+Sample 3x3 Grid
 {
-    Yes!
-    {
-        "A"
-    }
+    A B C 
+    K E M
+    X Y Z 
 }
 
-Is there any way to write these words without repeating same char again and again?
-{
-    Yes!
-    {
-        A(CE, CT, ADD)
-        {
-            Actually, we all know this method
-            It is Math!            
-            3 * (2x + 3y + z) = 6x + 9y + 3z
-        }
-    }
+Sample Dictionary
+{ 
+    "ABE", "ABY", "ABLE", "BAK", "KEY"
 }
 
-Finally!!!
+All Valid Words
 {
-    TrieSolver was implemented !
-}
-
-```
-[`TrieSolver`](https://github.com/tafo/BoggleSolver/blob/TrieSolver/BoggleSolver.Library/TrieSolver.cs)
-[`LetterTrie`](https://github.com/tafo/BoggleSolver/blob/TrieSolver/BoggleSolver.Library/LetterTrie.cs)
-```
-IndexSolver vs TrieSolver
-{
-    Windows 10.0.18362.959 (1903/May2019Update/19H1)
-    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
-
-    Dict
-    {
-        Maxi    = 281,279 Words
-        Midi    = 129,552 Words
-        Mini    =  39,096 Words    
-    }
-
-    Boggle
-    {
-        [
-            [ "T", "M", "C", "F" ],
-            [ "W", "O", "V", "I" ],
-            [ "A", "H", "X", "E" ],
-            [ "S", "Y", "L", "R" ]
-        ]
-    }
+    "ABE", "BAK", "KEY"
 }
 ```
-| Method | Size |       Mean |       Error |    StdDev |
-|------- |----- |-----------:|------------:|----------:|
-|   Trie | Maxi | 2,956.4 ms |    43.13 ms |  28.53 ms |
-|  Index | Maxi | 1,373.8 ms |    11.45 ms |   7.57 ms |
-|   Trie | Midi | 2,929.3 ms |    38.43 ms |  25.42 ms |
-|  Index | Midi | 1,273.4 ms |    15.85 ms |  10.48 ms |
-|   Trie | Mini | 3,151.5 ms | 1,116.59 ms | 738.55 ms |
-|  Index | Mini |   753.7 ms |     6.94 ms |   4.59 ms |
+## BOGGLE SOLVER
 ```
-Result?
-{
-    There is no performance improvement!
-    {
-        But!
-        Current depth(level) of Trie is 1
-        {
-            Remember the previous reusability method
-            A(CE, CT, ADD) = ACE, ACT, ADD
-
-            Is there any repeating letter inside the paranthesis?
-            {
-                Yes!
-                {
-                    "C"                    
-                }  
-
-                A(CE, CT, ADD) => A[C(E,T),DD]
-            }
-        }
-    }    
-}
-
-By The Way
-{
-    Trie => REUSABILITY,REUSABILITY,REUSABILITY,... => 
-    {
-        N * REUSABILITY
-    }
-}
+Finds all possible words in the given grid
+```
+```
+A boggle solver was implemented by DFS(DepthFirstSearch) approach
 ```
 
-```
-Not satisfied?
-
-So?
-```
-
-[`continue`](https://github.com/tafo/BoggleSolver)
+[`continue`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
