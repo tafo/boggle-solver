@@ -1,79 +1,56 @@
-## A RULE IS FIXED
-~Previously used letters can not be used again~
+## BOGGLE
+```
+A game that is played using a grid of letters
+
+Players attempt to find words in sequences of adjacent letters
+```
+```
+Players can start with any letter
+
+Previously used letters can not be used again
+
+Words must be at least 3 characters
+
+Words must be at most MxN characters
+{
+    M = The number of rows
+    N = The number of columns
+}
+
+Points are calculated according to the following table
+```
+Word Length | Points
+--| --
+3 | 1
+4 | 1
+5 | 2
+6 | 3
+7 | 5
+8+| 11
 ```
 Sample 3x3 Grid
 {
-    C O R
-    E L F
-    D L U
+    A B C 
+    K E M
+    X Y Z 
 }
 
-All Words(Test Dictionary)
-{
-    COLOR, COLD, CELL, OLD, ROLL, LED, FOR, FULL
+Sample Dictionary
+{ 
+    "ABE", "ABY", "ABLE", "BAK", "KEY"
 }
 
-DictionarySolver
+All Valid Words
 {
-    Mini
-    {
-        Found 28 words in 00:00:03.6108908
-        Checked 15,278,273 chains
-    }
-    Midi
-    {
-        Found 80 words in 00:00:03.5943312
-        Checked 15,278,273 chains
-    }
-    Maxi
-    {
-        Found 105 words in 00:00:03.5815585
-        Checked 15,278,273 chains
-    }
-}
-
-IndexSolver
-{
-    Mini
-    {
-        Found 28 words in 00:00:01.2250171
-        Checked 4,756,200 chains
-    }
-    Midi
-    {
-        Found 80 words in 00:00:02.2046735
-        Checked 8,612,655 chains
-    }
-    Maxi
-    {
-        Found 105 words in 00:00:02.4174902
-        Checked 9,516,211 chains
-    }
-}
-
-AND !!!
-
-Checked IndexSolver.ChainCounter for the following 3x4 Grid
-{
-    C O R
-    E L F
-    D L U
-    A B C
-
-    773,598,088 chains !!!
-    {
-        Do not check DictionarySolver.ChainCounter !!!
-    }
-}
-
-Result?
-{
-    Solver is not ready for 4x4 boggles!
+    "ABE", "BAK", "KEY"
 }
 ```
+## BOGGLE SOLVER
 ```
-So?
-Click continue
+Finds all possible words in the given grid
+```
+```
+A boggle solver was implemented by DFS(DepthFirstSearch) approach
 ```
 
-[`continue`](https://github.com/tafo/BoggleSolver)
+[`continue`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
