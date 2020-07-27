@@ -1,4 +1,4 @@
-## Dictionary(Key-Value Pairs)
+## DICTIONARY (Key-Value Pairs)
 ```
 We all know!
 {
