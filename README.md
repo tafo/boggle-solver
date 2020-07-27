@@ -54,3 +54,21 @@ A boggle solver was implemented by DFS(DepthFirstSearch) approach
 ```
 
 [`continue`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
+```
+IndexSolver vs Trie(3 letter chain)
+```
+| Method | Size |       Mean |     Error |    StdDev |
+|------- |----- |-----------:|----------:|----------:|
+|   Trie | Maxi | 1,734.1 ms |   9.18 ms |   6.07 ms |
+|  Index | Maxi | 1,504.1 ms | 477.62 ms | 315.91 ms |
+|   Trie | Midi | 1,539.7 ms |  16.16 ms |  10.69 ms |
+|  Index | Midi | 1,284.4 ms |   5.44 ms |   3.60 ms |
+|   Trie | Mini |   902.5 ms |   6.49 ms |   4.29 ms |
+|  Index | Mini |   762.1 ms |   5.84 ms |   3.86 ms |
+```
+Result?
+{
+    Check 4 letter chain
+}
+```
+
