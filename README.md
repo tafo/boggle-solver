@@ -53,4 +53,4 @@ Finds all possible words in the given grid
 A boggle solver was implemented by DFS(DepthFirstSearch) approach
 ```
 
-[`continue`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
+[`CLICK TO SEE PREVIOUS VERSIONS AND BENCHMARKS`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
