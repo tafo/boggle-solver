@@ -25,7 +25,7 @@ namespace BoggleSolver.Tests
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
 
-            _testOutput.WriteLine($"Found {result.Count} words in {timer.Elapsed}");
+            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
         }
 
         [Theory]
@@ -39,7 +39,7 @@ namespace BoggleSolver.Tests
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
 
-            _testOutput.WriteLine($"Found {result.Count} words in {timer.Elapsed}");
+            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
         }
     }
 }

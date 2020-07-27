@@ -7,9 +7,9 @@ namespace BoggleSolver.Library
     {
         public HashSet<string> Words { get; set; }
 
-        public List<string> Run(BoggleModel boggle)
+        public ResultModel Run(BoggleModel boggle)
         {
-            var result = new List<string>();
+            var result = new ResultModel();
 
             var visited = new bool[boggle.RowSize, boggle.ColSize];
             for (var i = 0; i < boggle.RowSize; i++)
@@ -20,7 +20,8 @@ namespace BoggleSolver.Library
                 }
             }
 
-            return result;
+            
+            return result.Sort();
 
             void Chain(int rowIndex, int colIndex, string chain)
             {
@@ -28,7 +29,7 @@ namespace BoggleSolver.Library
 
                 chain = $"{chain}{boggle.Grid[rowIndex][colIndex]}";
 
-                if (Words.Contains(chain)) result.Add(chain);
+                if (Words.Contains(chain)) result.Words.Add(chain);
 
                 var rowMin = Math.Max(0, rowIndex - 1);
                 var colMin = Math.Max(0, colIndex - 1);

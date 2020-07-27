@@ -18,27 +18,29 @@ namespace BoggleSolver.Tests
         [Fact]
         public void Validate_HashSetSolver()
         {
-            var solver = new HashSetSolver {Words = TheBook.GetSet(TheBook.Test)};
+            var solver = new HashSetSolver { Words = TheBook.GetSet(TheBook.Test) };
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
 
-            _testOutput.WriteLine($"Found {result.Count} words in {timer.Elapsed}");
-            result.ForEach(x => _testOutput.WriteLine(x));
-            result.Count.Should().Be(TestData.Boggle.Count);
+            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
+            result.Words.ForEach(x => _testOutput.WriteLine(x));
+            result.Words.Count.Should().Be(TestData.Boggle.Count);
+            result.Score.Should().Be(TestData.Boggle.Score);
         }
 
         [Fact]
         public void Validate_DictionarySolver()
         {
-            var solver = new DictionarySolver {Words = TheBook.GetDictionary(TheBook.Test)};
+            var solver = new DictionarySolver { Words = TheBook.GetDictionary(TheBook.Test) };
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
 
-            _testOutput.WriteLine($"Found {result.Count} words in {timer.Elapsed}");
-            result.ForEach(x => _testOutput.WriteLine(x));
-            result.Count.Should().Be(TestData.Boggle.Count);
+            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
+            result.Words.ForEach(x => _testOutput.WriteLine(x));
+            result.Words.Count.Should().Be(TestData.Boggle.Count);
+            result.Score.Should().Be(TestData.Boggle.Score);
         }
     }
 }

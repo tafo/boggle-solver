@@ -6,6 +6,7 @@
         public int RowSize => Grid.Length;
         public int ColSize => Grid[0].Length;
         public int Count { get; set; }
+        public int Score { get; set; }
 
         public override string ToString()
         {
