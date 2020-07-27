@@ -4,10 +4,9 @@ A game that is played using a grid of letters
 
 Players attempt to find words in sequences of adjacent letters
 ```
+~Previously used letters can not be used again~ after [Solver](https://github.com/tafo/BoggleSolver/tree/Solver)
 ```
 Players can start with any letter
-
-Previously used letters can not be used again
 
 Words must be at least 3 characters
 
