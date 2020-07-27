@@ -82,7 +82,7 @@ Result?
     There is no performance improvement!
     {
         But!
-        Current the depth(level) of current TrieSolver is 1
+        Current depth(level) of Trie is 1
         {
             Remember the previous reusability method
             A(CE, CT, ADD) = ACE, ACT, ADD
