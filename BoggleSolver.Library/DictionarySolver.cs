@@ -5,13 +5,16 @@ namespace BoggleSolver.Library
 {
     public class DictionarySolver
     {
-        public Dictionary<char, HashSet<string>> Words { get; set; }
+        public Dictionary<char, HashSet<string>> WordBook { get; set; }
+
+        public int ChainCounter { get; set; }
 
         public ResultModel Run(BoggleModel boggle)
         {
             var result = new ResultModel();
 
             var visited = new bool[boggle.RowSize, boggle.ColSize];
+
             for (var i = 0; i < boggle.RowSize; i++)
             {
                 for (var j = 0; j < boggle.ColSize; j++)
@@ -27,8 +30,9 @@ namespace BoggleSolver.Library
                 visited[rowIndex, colIndex] = true;
 
                 chain = $"{chain}{boggle.Grid[rowIndex][colIndex]}";
+                ChainCounter++;
 
-                if (Words[chain[0]].Contains(chain)) result.Words.Add(chain);
+                CheckChain(chain);
 
                 var rowMin = Math.Max(0, rowIndex - 1);
                 var colMin = Math.Max(0, colIndex - 1);
@@ -46,6 +50,13 @@ namespace BoggleSolver.Library
                 }
 
                 visited[rowIndex, colIndex] = false;
+            }
+
+
+            void CheckChain(string chain)
+            {
+                if (chain.Length < 3) return;
+                if (WordBook[chain[0]].Contains(chain)) result.Add(chain);
             }
         }
 

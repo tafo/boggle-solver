@@ -44,6 +44,11 @@ namespace BoggleSolver.Library
 
         public List<string> Words { get; set; }
 
+        public void Add(string word)
+        {
+            Words.Add(word);
+        }
+
         public ResultModel Sort()
         {
             Words = Words.OrderBy(x => x.Length).ThenBy(x => x).ToList();

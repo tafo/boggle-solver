@@ -21,17 +21,31 @@ namespace BoggleSolver.Library
             return File.ReadAllLines(GetPath(size));
         }
 
-        public static HashSet<string> GetSet(string size)
+        public static Dictionary<char, HashSet<string>> GetDictionary(string size)
         {
-            return new HashSet<string>(GetWords(size));
+            var words = GetWords(size);
+            return GetDictionary(words);
         }
 
-        public static Dictionary<char, HashSet<string>> GetDictionary(string size)
+        private static Dictionary<char, HashSet<string>> GetDictionary(string[] words)
         {
             var dictionary = new Dictionary<char, HashSet<string>>();
             Array.ForEach(Letters, letter => dictionary.Add(letter, new HashSet<string>()));
-            Array.ForEach(GetWords(size), word => dictionary[word[0]].Add(word));
+            Array.ForEach(words, word => dictionary[word[0]].Add(word));
             return dictionary;
+        }
+
+        public static Dictionary<string, HashSet<string>> GetIndex(string size)
+        {
+            var book = new Dictionary<string, HashSet<string>>();
+            var words = GetWords(size);
+            Array.ForEach(words, word =>
+            {
+                var ABC = word.Substring(0, 3);
+                if (!book.ContainsKey(ABC)) book.Add(ABC, new HashSet<string>());
+                book[ABC].Add(word);
+            });
+            return book;
         }
 
         public static readonly char[] Letters =

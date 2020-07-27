@@ -16,28 +16,30 @@ namespace BoggleSolver.Tests
         }
 
         [Fact]
-        public void Validate_HashSetSolver()
+        public void Validate_DictionarySolver()
         {
-            var solver = new HashSetSolver { Words = TheBook.GetSet(TheBook.Test) };
+            var solver = new DictionarySolver { WordBook = TheBook.GetDictionary(TheBook.Test) };
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
 
             _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
+            _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
             result.Words.ForEach(x => _testOutput.WriteLine(x));
             result.Words.Count.Should().Be(TestData.Boggle.Count);
             result.Score.Should().Be(TestData.Boggle.Score);
         }
 
         [Fact]
-        public void Validate_DictionarySolver()
+        public void Validate_IndexSolver()
         {
-            var solver = new DictionarySolver { Words = TheBook.GetDictionary(TheBook.Test) };
+            var solver = new IndexSolver { WordBook = TheBook.GetIndex(TheBook.Test) };
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
 
             _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
+            _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
             result.Words.ForEach(x => _testOutput.WriteLine(x));
             result.Words.Count.Should().Be(TestData.Boggle.Count);
             result.Score.Should().Be(TestData.Boggle.Score);

@@ -15,9 +15,9 @@ namespace BoggleSolver.Benchmark
         public Dictionary<char, HashSet<string>> MidiDictionary { get; set; }
         public Dictionary<char, HashSet<string>> MaxiDictionary { get; set; }
 
-        public HashSet<string> MiniSet { get; set; }
-        public HashSet<string> MidiSet { get; set; }
-        public HashSet<string> MaxiSet { get; set; }
+        public Dictionary<string, HashSet<string>> MiniIndex { get; set; }
+        public Dictionary<string, HashSet<string>> MidiIndex { get; set; }
+        public Dictionary<string, HashSet<string>> MaxiIndex { get; set; }
 
         [Params(TheBook.Mini, TheBook.Midi, TheBook.Maxi)]
         public string Size;
@@ -31,9 +31,9 @@ namespace BoggleSolver.Benchmark
             MidiDictionary = TheBook.GetDictionary(TheBook.Midi);
             MaxiDictionary = TheBook.GetDictionary(TheBook.Maxi);
 
-            MiniSet = TheBook.GetSet(TheBook.Mini);
-            MidiSet = TheBook.GetSet(TheBook.Midi);
-            MaxiSet = TheBook.GetSet(TheBook.Maxi);
+            MiniIndex = TheBook.GetIndex(TheBook.Mini);
+            MidiIndex = TheBook.GetIndex(TheBook.Midi);
+            MaxiIndex = TheBook.GetIndex(TheBook.Maxi);
 
             var json = File.ReadAllText($"{Directory.GetCurrentDirectory()}/Boggle.json");
             Boggle = JsonConvert.DeserializeObject<BoggleModel>(json);
@@ -42,9 +42,9 @@ namespace BoggleSolver.Benchmark
         [Benchmark]
         public void Dictionary()
         {
-            var solver = new DictionarySolver
+            var solver = new DictionarySolver()
             {
-                Words = Size switch
+                WordBook = Size switch
                 {
                     TheBook.Mini => MiniDictionary,
                     TheBook.Midi => MidiDictionary,
@@ -56,16 +56,16 @@ namespace BoggleSolver.Benchmark
         }
 
         [Benchmark]
-        public void HashSet()
+        public void Index()
         {
-            var solver = new HashSetSolver
+            var solver = new IndexSolver
             {
-                Words = Size switch
+                WordBook = Size switch
                 {
-                    TheBook.Mini => MiniSet,
-                    TheBook.Midi => MidiSet,
-                    TheBook.Maxi => MaxiSet,
-                    _ => MiniSet
+                    TheBook.Mini => MiniIndex,
+                    TheBook.Midi => MidiIndex,
+                    TheBook.Maxi => MaxiIndex,
+                    _ => MiniIndex
                 }
             };
             solver.Run(Boggle);

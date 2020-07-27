@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 namespace BoggleSolver.Library
 {
-    public class HashSetSolver
+    public class IndexSolver
     {
-        public HashSet<string> Words { get; set; }
+        public Dictionary<string, HashSet<string>> WordBook { get; set; }
+
+        public int ChainCounter { get; set; }
 
         public ResultModel Run(BoggleModel boggle)
         {
@@ -20,7 +22,6 @@ namespace BoggleSolver.Library
                 }
             }
 
-            
             return result.Sort();
 
             void Chain(int rowIndex, int colIndex, string chain)
@@ -28,8 +29,13 @@ namespace BoggleSolver.Library
                 visited[rowIndex, colIndex] = true;
 
                 chain = $"{chain}{boggle.Grid[rowIndex][colIndex]}";
+                ChainCounter++;
 
-                if (Words.Contains(chain)) result.Words.Add(chain);
+                if (!CheckChain(chain))
+                {
+                    visited[rowIndex, colIndex] = false;
+                    return;
+                }
 
                 var rowMin = Math.Max(0, rowIndex - 1);
                 var colMin = Math.Max(0, colIndex - 1);
@@ -48,8 +54,19 @@ namespace BoggleSolver.Library
 
                 visited[rowIndex, colIndex] = false;
             }
+
+            bool CheckChain(string chain)
+            {
+                if (chain.Length < 3) return true;
+
+                var ABC = chain.Substring(0, 3);
+                if (!WordBook.ContainsKey(ABC)) return false;
+
+                if (WordBook[ABC].Contains(chain)) result.Add(chain);
+                return true;
+            }
         }
 
-        public override string ToString() => "HashSet";
+        public override string ToString() => "Index";
     }
 }
