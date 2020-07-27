@@ -1,65 +1,55 @@
-## Dictionary(Key-Value Pairs)
+## BOGGLE
 ```
-We all know!
+A game that is played using a grid of letters
+
+Players attempt to find words in sequences of adjacent letters
+```
+```
+Players can start with any letter
+
+Previously used letters can not be used again
+
+Words must be at least 3 characters
+
+Words must be at most MxN characters
 {
-    Searching a word in the dictionary?
-    Check first letter!
+    M = The number of rows
+    N = The number of columns
 }
 
-DictionarySolver was implemented
+Points are calculated according to the following table
+```
+Word Length | Points
+--| --
+3 | 1
+4 | 1
+5 | 2
+6 | 3
+7 | 5
+8+| 11
+```
+Sample 3x3 Grid
 {
-    Words = new Dictionary<char, HashSet<string>>
+    A B C 
+    K E M
+    X Y Z 
 }
-
-Every word is mapped to its first letter!
-```
-[`DictionarySolver`](https://github.com/tafo/BoggleSolver/blob/DictionarySolver/BoggleSolver.Library/DictionarySolver.cs)
-```
-HashSetSolver vs DictionarySolver
+Sample Dictionary
+{ 
+    "ABE", "ABY", "ABLE", "BAK", "KEY"
+}
+All Valid Words
 {
-    Windows 10.0.18362.959 (1903/May2019Update/19H1)
-    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
-
-    Dict
-    {
-        Maxi    = 281,279 Words
-        Midi    = 129,552 Words
-        Mini    =  39,096 Words    
-    }
-
-    Boggle
-    {
-        [
-            [ "T", "M", "C", "F" ],
-            [ "W", "O", "V", "I" ],
-            [ "A", "H", "X", "E" ],
-            [ "S", "Y", "L", "R" ]
-        ]
-    }
+    "ABE", "BAK", "KEY"
 }
 ```
-|     Method | Size |    Mean |    Error |   StdDev |
-|----------- |----- |--------:|---------:|---------:|
-| Dictionary | Maxi | 2.372 s | 0.0832 s | 0.0550 s |
-|    HashSet | Maxi | 3.001 s | 0.0604 s | 0.0399 s |
-| Dictionary | Midi | 2.340 s | 0.0659 s | 0.0436 s |
-|    HashSet | Midi | 2.580 s | 0.0941 s | 0.0622 s |
-| Dictionary | Mini | 2.294 s | 0.0329 s | 0.0218 s |
-|    HashSet | Mini | 2.323 s | 0.0867 s | 0.0574 s |
+## BOGGLE SOLVER
 ```
-Result?
-{
-    A fine performance improvement !!
-    {
-        No surprise!
-    }
-}
+Finds all possible words in the given grid
+```
+```
+A boggle solver was implemented by DFS(DepthFirstSearch) approach
+```
 ```
 
-```
-But, not satisfied!
-
-So?
-```
-
-[`continue`](https://github.com/tafo/BoggleSolver)
+[`continue`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
