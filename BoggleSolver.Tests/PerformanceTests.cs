@@ -1,7 +1,5 @@
 ﻿using System.Diagnostics;
-using System.Linq;
 using BoggleSolver.Library;
-using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 

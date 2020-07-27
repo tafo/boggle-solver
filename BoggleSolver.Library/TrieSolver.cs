@@ -66,7 +66,17 @@ namespace BoggleSolver.Library
 
                 if (trie == null) return false;
 
-                if(trie.Words.Contains(chain)) result.Add(chain);
+                switch (chain.Length)
+                {
+                    case 3:
+                        if (trie.Words.Contains(chain)) result.Add(chain);
+                        break;
+                    default:
+                        trie = trie[chain[3]];
+                        if (trie == null) return false;
+                        if (trie.Words.Contains(chain)) result.Add(chain);
+                        break;
+                }
 
                 return true;
             }

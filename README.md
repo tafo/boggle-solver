@@ -92,3 +92,41 @@ Result?
     Check 4 letter chain
 }
 ```
+```
+IndexSolver vs Trie(4 letter chain)
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Boggle
+    {
+        [
+            [ "T", "M", "C", "F" ],
+            [ "W", "O", "V", "I" ],
+            [ "A", "H", "X", "E" ],
+            [ "S", "Y", "L", "R" ]
+        ]
+    }
+}
+```
+| Method | Size |       Mean |    Error |   StdDev |
+|------- |----- |-----------:|---------:|---------:|
+|   Trie | Maxi |   539.6 ms |  3.50 ms |  2.32 ms |
+|  Index | Maxi | 1,416.1 ms | 10.95 ms |  7.24 ms |
+|   Trie | Midi |   408.8 ms |  1.59 ms |  1.05 ms |
+|  Index | Midi | 1,313.7 ms | 10.41 ms |  6.88 ms |
+|   Trie | Mini |   148.1 ms |  7.37 ms |  4.87 ms |
+|  Index | Mini |   778.1 ms | 17.72 ms | 11.72 ms |
+```
+Result?
+{
+    IndexSolver is retired!
+}
+```
