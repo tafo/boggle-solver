@@ -5,6 +5,7 @@ How do we search on the NET?
 How do we search ...?
 ```
 [Index@Wikipedia](https://en.wikipedia.org/wiki/Index)
+
 [SubjectIndexing@Wikipedia](https://en.wikipedia.org/wiki/Subject_indexing)
 ```
 Content(Subject Indexing)
