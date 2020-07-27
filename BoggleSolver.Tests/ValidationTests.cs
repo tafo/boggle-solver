@@ -16,9 +16,9 @@ namespace BoggleSolver.Tests
         }
 
         [Fact]
-        public void Test_HashSetSolver()
+        public void Validate_HashSetSolver()
         {
-            var solver = new HashSetSolver {Words = Size.Test.ToHashSet()};
+            var solver = new HashSetSolver {Words = TheBook.GetSet(TheBook.Test)};
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
@@ -29,9 +29,9 @@ namespace BoggleSolver.Tests
         }
 
         [Fact]
-        public void Test_DictionarySolver()
+        public void Validate_DictionarySolver()
         {
-            var solver = new DictionarySolver {Words = Size.Test.ToDictionary()};
+            var solver = new DictionarySolver {Words = TheBook.GetDictionary(TheBook.Test)};
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();

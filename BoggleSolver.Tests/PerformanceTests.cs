@@ -15,13 +15,12 @@ namespace BoggleSolver.Tests
         }
 
         [Theory]
-        [InlineData(Size.Test)]
-        [InlineData(Size.Mini)]
-        [InlineData(Size.Midi)]
-        [InlineData(Size.Maxi)]
+        [InlineData(TheBook.Mini)]
+        [InlineData(TheBook.Midi)]
+        [InlineData(TheBook.Maxi)]
         public void Test_HashSetSolver(string size)
         {
-            var solver = new HashSetSolver { Words = size.ToHashSet() };
+            var solver = new HashSetSolver { Words = TheBook.GetSet(size) };
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
@@ -30,13 +29,12 @@ namespace BoggleSolver.Tests
         }
 
         [Theory]
-        [InlineData(Size.Test)]
-        [InlineData(Size.Mini)]
-        [InlineData(Size.Midi)]
-        [InlineData(Size.Maxi)]
+        [InlineData(TheBook.Mini)]
+        [InlineData(TheBook.Midi)]
+        [InlineData(TheBook.Maxi)]
         public void Test_DictionarySolver(string size)
         {
-            var solver = new DictionarySolver { Words = size.ToDictionary() };
+            var solver = new DictionarySolver { Words = TheBook.GetDictionary(size) };
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
