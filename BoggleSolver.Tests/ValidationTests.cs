@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using BoggleSolver.Library;
 using FluentAssertions;
 using Xunit;
@@ -23,9 +24,9 @@ namespace BoggleSolver.Tests
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
 
-            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
             _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
-            result.Words.ForEach(x => _testOutput.WriteLine(x));
+            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
+            result.Words.ToList().ForEach(x => _testOutput.WriteLine(x));
             result.Words.Count.Should().Be(TestData.Boggle.Count);
             result.Score.Should().Be(TestData.Boggle.Score);
         }
@@ -38,9 +39,9 @@ namespace BoggleSolver.Tests
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
 
-            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
             _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
-            result.Words.ForEach(x => _testOutput.WriteLine(x));
+            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
+            result.Words.ToList().ForEach(x => _testOutput.WriteLine(x));
             result.Words.Count.Should().Be(TestData.Boggle.Count);
             result.Score.Should().Be(TestData.Boggle.Score);
         }

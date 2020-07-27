@@ -13,8 +13,6 @@ namespace BoggleSolver.Library
         {
             var result = new ResultModel();
 
-            var visited = new bool[boggle.RowSize, boggle.ColSize];
-
             for (var i = 0; i < boggle.RowSize; i++)
             {
                 for (var j = 0; j < boggle.ColSize; j++)
@@ -23,16 +21,13 @@ namespace BoggleSolver.Library
                 }
             }
 
-            return result.Sort();
+            return result;
 
             void Chain(int rowIndex, int colIndex, string chain)
             {
-                visited[rowIndex, colIndex] = true;
-
                 chain = $"{chain}{boggle.Grid[rowIndex][colIndex]}";
-                ChainCounter++;
 
-                CheckChain(chain);
+                if(!CheckChain(chain)) return;
 
                 var rowMin = Math.Max(0, rowIndex - 1);
                 var colMin = Math.Max(0, colIndex - 1);
@@ -44,19 +39,23 @@ namespace BoggleSolver.Library
                 {
                     for (var y = colMin; y <= colMax; y++)
                     {
-                        if (visited[x, y]) continue;
+                        if (rowIndex == x && colIndex == y) continue;
                         Chain(x, y, chain);
                     }
                 }
-
-                visited[rowIndex, colIndex] = false;
             }
 
 
-            void CheckChain(string chain)
+            bool CheckChain(string chain)
             {
-                if (chain.Length < 3) return;
+                ChainCounter++;
+                
+                if (chain.Length < 3) return true;
+
+                if (chain.Length > boggle.Size) return false;
+
                 if (WordBook[chain[0]].Contains(chain)) result.Add(chain);
+                return true;
             }
         }
 

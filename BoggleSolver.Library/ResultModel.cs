@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 
 namespace BoggleSolver.Library
 {
@@ -7,7 +6,7 @@ namespace BoggleSolver.Library
     {
         public ResultModel()
         {
-            Words = new List<string>();
+            Words = new HashSet<string>();
         }
 
         public int Score
@@ -42,17 +41,11 @@ namespace BoggleSolver.Library
             }
         }
 
-        public List<string> Words { get; set; }
+        public HashSet<string> Words { get; set; }
 
         public void Add(string word)
         {
             Words.Add(word);
-        }
-
-        public ResultModel Sort()
-        {
-            Words = Words.OrderBy(x => x.Length).ThenBy(x => x).ToList();
-            return this;
         }
     }
 }
