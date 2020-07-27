@@ -91,7 +91,7 @@ Result?
 }
 ```
 ```
-But, not satisfied!
+Not satisfied?
 
 So?
 ```
