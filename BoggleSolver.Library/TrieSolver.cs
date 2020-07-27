@@ -5,6 +5,7 @@ namespace BoggleSolver.Library
     public class TrieSolver
     {
         public LetterTrie RootTrie { get; set; }
+
         public int ChainCounter { get; set; }
 
         public ResultModel Run(BoggleModel boggle)
@@ -61,18 +62,12 @@ namespace BoggleSolver.Library
 
                 if (chain.Length > boggle.Size) return false;
 
-                var i = 0;
-                var trie = RootTrie;
-                while (i < LetterTrie.Level && i < chain.Length)
-                {
-                    var letter = chain[i];
-                    trie = trie.Children.Find(x => x.Letter == letter);
-                    if (trie == null) return false;
-                    i++;
-                }
+                var ABCs = RootTrie[chain[0]]?[chain[1]]?[chain[2]];
 
-                if (trie == null) return false;
-                if (trie.IsLastLetter || trie.Words.Contains(chain)) result.Add(chain);
+                if (ABCs == null) return false;
+
+                if (ABCs.Words.Contains(chain)) result.Add(chain);
+
                 return true;
             }
         }

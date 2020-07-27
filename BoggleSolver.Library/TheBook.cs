@@ -52,21 +52,10 @@ namespace BoggleSolver.Library
         public static LetterTrie GetTrie(string size)
         {
             var root = new LetterTrie();
-            var words = TheBook.GetWords(size);
-            Array.ForEach(words, word =>
-            {
-                var i = 0;
-                var trie = root;
-                while (i < LetterTrie.Level && i < word.Length)
-                {
-                    trie = trie[word[i]];
-                    i++;
-                }
-
-                if (i == word.Length) trie.IsLastLetter = true;
-                else trie.Words.Add(word);
-            });
-
+            var words = GetWords(size);
+            LetterTrie.IsReadOnly = false;
+            Array.ForEach(words, word => { root[word[0]][word[1]][word[2]].Words.Add(word); });
+            LetterTrie.IsReadOnly = true;
             return root;
         }
 
