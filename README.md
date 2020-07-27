@@ -91,8 +91,10 @@ Result?
             {
                 Yes!
                 {
-                    A(CE, CT, ADD) => A(C(E,T),DD)
-                }                
+                    "C"                    
+                }  
+
+                A(CE, CT, ADD) => A[C(E,T),DD]
             }
         }
     }
