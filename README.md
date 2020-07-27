@@ -1,4 +1,4 @@
-## INDEXING & SEARCHING
+## TRIE
 ```
 How do we search a word in a dictionary?
 ```
@@ -97,6 +97,14 @@ Result?
                 A(CE, CT, ADD) => A[C(E,T),DD]
             }
         }
+    }    
+}
+
+By The Way
+{
+    Trie => REUSABILITY,REUSABILITY,REUSABILITY,... => 
+    {
+        N * REUSABILITY
     }
 }
 ```
