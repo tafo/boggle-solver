@@ -62,4 +62,4 @@ But, not satisfied!
 So?
 ```
 
-[`continue`](https://github.com/tafo/BoggleSolver)
+[`continue`](https://github.com/tafo/BoggleSolver/tree/IndexSolver)
