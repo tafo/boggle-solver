@@ -34,10 +34,12 @@ Sample 3x3 Grid
     K E M
     X Y Z 
 }
+
 Sample Dictionary
 { 
     "ABE", "ABY", "ABLE", "BAK", "KEY"
 }
+
 All Valid Words
 {
     "ABE", "BAK", "KEY"
