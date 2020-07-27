@@ -1,6 +1,6 @@
 ## TRIE
 ```
-How do we search a word in a dictionary?
+2 (x + y) = ?
 ```
 [Trie@Wikipedia](https://en.wikipedia.org/wiki/Trie)
 ```
