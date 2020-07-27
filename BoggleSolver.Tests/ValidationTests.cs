@@ -17,9 +17,9 @@ namespace BoggleSolver.Tests
         }
 
         [Fact]
-        public void Validate_DictionarySolver()
+        public void Validate_TrieSolver()
         {
-            var solver = new DictionarySolver { WordBook = TheBook.GetDictionary(TheBook.Test) };
+            var solver = new TrieSolver {RootTrie = TheBook.GetTrie(TheBook.Test)};
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();

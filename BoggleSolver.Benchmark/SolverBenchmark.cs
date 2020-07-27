@@ -11,9 +11,9 @@ namespace BoggleSolver.Benchmark
     [SimpleJob(RunStrategy.Monitoring, RuntimeMoniker.NetCoreApp31)]
     public class SolverBenchmark
     {
-        public Dictionary<char, HashSet<string>> MiniDictionary { get; set; }
-        public Dictionary<char, HashSet<string>> MidiDictionary { get; set; }
-        public Dictionary<char, HashSet<string>> MaxiDictionary { get; set; }
+        public LetterTrie MiniBook { get; set; }
+        public LetterTrie MidiBook { get; set; }
+        public LetterTrie MaxiBook { get; set; }
 
         public Dictionary<string, HashSet<string>> MiniIndex { get; set; }
         public Dictionary<string, HashSet<string>> MidiIndex { get; set; }
@@ -27,9 +27,9 @@ namespace BoggleSolver.Benchmark
         [GlobalSetup]
         public void GlobalSetup()
         {
-            MiniDictionary = TheBook.GetDictionary(TheBook.Mini);
-            MidiDictionary = TheBook.GetDictionary(TheBook.Midi);
-            MaxiDictionary = TheBook.GetDictionary(TheBook.Maxi);
+            MiniBook = TheBook.GetTrie(TheBook.Mini);
+            MidiBook = TheBook.GetTrie(TheBook.Midi);
+            MaxiBook = TheBook.GetTrie(TheBook.Maxi);
 
             MiniIndex = TheBook.GetIndex(TheBook.Mini);
             MidiIndex = TheBook.GetIndex(TheBook.Midi);
@@ -40,16 +40,16 @@ namespace BoggleSolver.Benchmark
         }
 
         [Benchmark]
-        public void Dictionary()
+        public void Trie()
         {
-            var solver = new DictionarySolver()
+            var solver = new TrieSolver()
             {
-                WordBook = Size switch
+                RootTrie = Size switch
                 {
-                    TheBook.Mini => MiniDictionary,
-                    TheBook.Midi => MidiDictionary,
-                    TheBook.Maxi => MaxiDictionary,
-                    _ => MiniDictionary
+                    TheBook.Mini => MiniBook,
+                    TheBook.Midi => MidiBook,
+                    TheBook.Maxi => MaxiBook,
+                    _ => MiniBook
                 }
             };
             solver.Run(Boggle);

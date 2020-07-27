@@ -6,6 +6,7 @@ namespace BoggleSolver.Library
 {
     public class TheBook
     {
+        public const string Abc = "Abc";
         public const string Test = "Test";
         public const string Mini = "Mini";
         public const string Midi = "Midi";
@@ -46,6 +47,27 @@ namespace BoggleSolver.Library
                 book[ABC].Add(word);
             });
             return book;
+        }
+
+        public static LetterTrie GetTrie(string size)
+        {
+            var root = new LetterTrie();
+            var words = TheBook.GetWords(size);
+            Array.ForEach(words, word =>
+            {
+                var i = 0;
+                var trie = root;
+                while (i < LetterTrie.Level && i < word.Length)
+                {
+                    trie = trie[word[i]];
+                    i++;
+                }
+
+                if (i == word.Length) trie.IsLastLetter = true;
+                else trie.Words.Add(word);
+            });
+
+            return root;
         }
 
         public static readonly char[] Letters =

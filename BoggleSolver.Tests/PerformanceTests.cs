@@ -1,5 +1,7 @@
 ﻿using System.Diagnostics;
+using System.Linq;
 using BoggleSolver.Library;
+using FluentAssertions;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -18,15 +20,15 @@ namespace BoggleSolver.Tests
         [InlineData(TheBook.Mini)]
         [InlineData(TheBook.Midi)]
         [InlineData(TheBook.Maxi)]
-        public void Test_DictionarySolver(string size)
+        public void Validate_TrieSolver(string size)
         {
-            var solver = new DictionarySolver { WordBook = TheBook.GetDictionary(size) };
+            var solver = new TrieSolver { RootTrie = TheBook.GetTrie(size) };
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
 
-            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
             _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
+            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
         }
 
         [Theory]
