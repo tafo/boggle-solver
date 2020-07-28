@@ -1,20 +1,9 @@
-## DICTIONARY (Key-Value Pairs)
 ```
-We all know!
+Why dictionaries have another section for each letter?
 {
-    Searching a word in the dictionary?
-    Check first letter!
+    Every word is mapped to its first letter
 }
 
-DictionarySolver was implemented
-{
-    Words = new Dictionary<char, HashSet<string>>
-}
-
-Every word is mapped to its first letter!
-```
-[`DictionarySolver`](https://github.com/tafo/BoggleSolver/blob/DictionarySolver/BoggleSolver.Library/DictionarySolver.cs)
-```
 HashSetSolver vs DictionarySolver
 {
     Windows 10.0.18362.959 (1903/May2019Update/19H1)
@@ -50,16 +39,14 @@ HashSetSolver vs DictionarySolver
 Result?
 {
     A fine performance improvement !!
-    {
-        No surprise!
-    }
 }
 ```
 
 ```
-Not satisfied?
-
-So?
+Satisfied(?)
+{
+    Yes => ???
+    No  => Next()
+}
 ```
-
-[`continue`](https://github.com/tafo/BoggleSolver/tree/IndexSolver)
+[`Next()`](https://github.com/tafo/BoggleSolver/tree/IndexSolver)
