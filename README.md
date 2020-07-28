@@ -702,11 +702,6 @@ Result?
         The minimum observed iteration time is  8.7689 ms which is very small,
         ...
     }
-    Outliers
-    {
-            10.34 ms, 
-            13.51 ms    
-    }
 
     So?
     {
