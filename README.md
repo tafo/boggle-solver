@@ -246,7 +246,6 @@ Satisfied(?)
 ***
 **DictionarySolver**
 ```
-```
 Why dictionaries have another section for each letter?
 {
     Every word is mapped to its first letter
