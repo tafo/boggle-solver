@@ -509,7 +509,6 @@ TrieSolver Level1 vs Level2
 | Mini |     1 | 2.893 s | 0.0297 s | 0.0197 s |
 | Mini |     2 | 1.818 s | 0.0201 s | 0.0133 s |
 ```
-```
 Result?
 {
     Level1.ChainCounter@Maxi = 12,029,640
