@@ -138,9 +138,11 @@ Satisfied(?)
 ***
 **HashSetSolver**
 ```
-A set contains unique elements {
+A set contains unique elements 
+{
     Every word is unique!
 }
+
 FindChainMethod  => DepthFirstSearch
 
 CheckChainMethod => ?
