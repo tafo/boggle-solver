@@ -4,8 +4,6 @@ namespace BoggleSolver.Library
 {
     public class Solver
     {
-        public int TrieLevel { get; set; }
-
         public LetterTrie RootTrie { get; set; }
 
         public int ChainCounter { get; set; }
@@ -64,7 +62,7 @@ namespace BoggleSolver.Library
 
                 if (chain.Length > boggle.Size) return false;
 
-                switch (RootTrie.Check(chain, TrieLevel))
+                switch (RootTrie.Check(chain))
                 {
                     case -1:
                         return false;

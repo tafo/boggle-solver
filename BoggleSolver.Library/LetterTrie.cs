@@ -5,6 +5,7 @@ namespace BoggleSolver.Library
 {
     public class LetterTrie
     {
+        public static int Level = 3;
         public int LetterCode { get; set; }
         public List<LetterTrie> Letters { get; set; }
         public HashSet<string> Words { get; set; }
@@ -30,11 +31,12 @@ namespace BoggleSolver.Library
 
         private LetterTrie this[char c] => Letters.Find(x => x.LetterCode == c);
 
-        public void Set(string word, int level)
+        public void Set(string word)
         {
-            var chainSize = Math.Min(word.Length, level);
+            var chainSize = Math.Min(word.Length, Level);
             var trie = chainSize switch
             {
+                5 => this[word.L0()][word.L1()][word.L2()][word.L3()][word.L4()],
                 4 => this[word.L0()][word.L1()][word.L2()][word.L3()],
                 _ => this[word.L0()][word.L1()][word.L2()],
             };
@@ -42,11 +44,12 @@ namespace BoggleSolver.Library
             trie.Words.Add(word);
         }
 
-        public int Check(string chain, int level)
+        public int Check(string chain)
         {
-            var chainSize = Math.Min(chain.Length, level);
+            var chainSize = Math.Min(chain.Length, Level);
             var trie = chainSize switch
             {
+                5 => this[chain[0]]?[chain[1]]?[chain[2]]?[chain[3]]?[chain[4]],
                 4 => this[chain[0]]?[chain[1]]?[chain[2]]?[chain[3]],
                 _ => this[chain[0]]?[chain[1]]?[chain[2]],
             };

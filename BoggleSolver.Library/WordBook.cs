@@ -5,6 +5,7 @@ namespace BoggleSolver.Library
 {
     public static class WordBook
     {
+        public const string Abcd = "Abcd";
         public const string Test = "Test";
         public const string Mini = "Mini";
         public const string Midi = "Midi";
@@ -20,11 +21,11 @@ namespace BoggleSolver.Library
             return File.ReadAllLines(size.Path());
         }
 
-        public static LetterTrie GetTrie(this string size, int level)
+        public static LetterTrie GetTrie(this string size)
         {
             var root = new LetterTrie();
             var words = size.GetWords();
-            Array.ForEach(words, word => { root.Set(word, level); });
+            Array.ForEach(words, word => { root.Set(word); });
             return root;
         }
 
@@ -32,5 +33,6 @@ namespace BoggleSolver.Library
         public static int L1(this string word) => word[1];
         public static int L2(this string word) => word[2];
         public static int L3(this string word) => word[3];
+        public static int L4(this string word) => word[4];
     }
 }

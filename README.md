@@ -639,4 +639,92 @@ Satisfied(?)
 }
 ```
 ***
-**Next() => ???**
+**ABCDs & ABCDEs**
+```
+TrieSolver Level4 vs Level5
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Boggle
+    {
+        [
+            [ "T", "M", "C", "F" ],
+            [ "W", "O", "V", "I" ],
+            [ "A", "H", "X", "E" ],
+            [ "S", "Y", "L", "R" ]
+        ]
+    }
+}
+```
+| Method | Size | Level |       Mean |    Error |   StdDev |
+|------- |----- |------ |-----------:|---------:|---------:|
+|   Trie | Maxi |     4 | 525.565 ms | 8.685 ms | 5.745 ms |
+|   Trie | Maxi |     5 |  54.322 ms | 9.538 ms | 6.309 ms |
+|   Trie | Midi |     4 | 402.362 ms | 5.710 ms | 3.776 ms |
+|   Trie | Midi |     5 |  35.127 ms | 7.934 ms | 5.248 ms |
+|   Trie | Mini |     4 | 145.967 ms | 8.766 ms | 5.798 ms |
+|   Trie | Mini |     5 |   9.568 ms | 2.198 ms | 1.454 ms |
+```
+Result?
+{
+    Level4.ChainCounter@Maxi =  1,481,753
+    Level5.ChainCounter@Maxi =    136,400
+
+    Level4.ChainCounter@Midi =  1,149,665
+    Level5.ChainCounter@Midi =     86,507
+
+    Level4.ChainCounter@Mini =    439,258
+    Level5.ChainCounter@Mini =     24,725
+
+    ABCDs  >>> Words.Every.Take(4).Unique();
+    ABCDEs >>> Words.Every.Take(5).Unique();
+
+    There are 39,096 words in Mini dictionary
+    {
+        ABCDs => 439,258 
+        ABCDEs => 24,725
+    }        
+    
+    AND!!!
+
+    Warnings
+    {
+        The minimum observed iteration time is 51.6903 ms which is very small,
+        The minimum observed iteration time is 32.9073 ms which is very small, 
+        The minimum observed iteration time is  8.7689 ms which is very small,
+        ...
+    }
+    Outliers
+    {
+            10.34 ms, 
+            13.51 ms    
+    }
+
+    So?
+    {
+        It is the time to use a 4x5 boggle
+    }
+}
+```
+```
+Satisfied(?)
+{
+    Yes!
+    {
+        But, not impressed!
+        {
+            Next()
+        }
+    }
+    No  => Next()
+}
+```
+**LetterLake vs LetterSea**
