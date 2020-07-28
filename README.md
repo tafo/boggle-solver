@@ -705,7 +705,7 @@ Result?
 
     So?
     {
-        It is the time to use a 4x5 boggle
+        It is the time to use a 5x5 boggle
     }
 }
 ```
