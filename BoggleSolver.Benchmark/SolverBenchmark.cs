@@ -13,23 +13,26 @@ namespace BoggleSolver.Benchmark
         [Params(WordBook.Mini, WordBook.Midi, WordBook.Maxi)]
         public string Size;
 
-        [Params(1, 2)] public int Level;
+        [Params(1, 2, 3)] public int Level;
 
-        public BoggleModel Boggle { get; set; }
+        private BoggleModel _boggle;
+
+        private Solver _solver;
 
         [GlobalSetup]
         public void GlobalSetup()
         {
             var json = File.ReadAllText($"{Directory.GetCurrentDirectory()}/Boggle.json");
-            Boggle = JsonConvert.DeserializeObject<BoggleModel>(json);
+            _boggle = JsonConvert.DeserializeObject<BoggleModel>(json);
+            _solver = new Solver(Size);
         }
+
 
         [Benchmark]
         public void Trie()
         {
             LetterTrie.Level = Level;
-            var solver = new Solver(Size);
-            solver.Run(Boggle);
+            _solver.Run(_boggle);
         }
     }
 }

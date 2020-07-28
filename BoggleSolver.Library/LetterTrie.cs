@@ -24,6 +24,7 @@ namespace BoggleSolver.Library
             {
                 1 => Get(word[0]),
                 2 => Get(word[0]).Get(word[1]),
+                3 => Get(word[0]).Get(word[1]).Get(word[2]),
                 _ => Get(word[0]),
             };
 
@@ -44,7 +45,8 @@ namespace BoggleSolver.Library
             var trie = Level switch
             {
                 1 => this[chain[0]],
-                2 => this[chain[0]][chain[1]],
+                2 => this[chain[0]]?[chain[1]],
+                3 => this[chain[0]]?[chain[1]]?[chain[2]],
                 _ => this[chain[0]],
             };
 

@@ -477,7 +477,7 @@ ACE, ACT, ADD =>
 }
 ```
 ```
-TrieSolver Level1 vs Level2
+TrieSolver Level1 vs Level2 vs Level3
 {
     Windows 10.0.18362.959 (1903/May2019Update/19H1)
     Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
@@ -500,25 +500,31 @@ TrieSolver Level1 vs Level2
     }
 }
 ```
-| Size | Level |    Mean |    Error |   StdDev |
-|----- |------ |--------:|---------:|---------:|
-| Maxi |     1 | 3.133 s | 0.0245 s | 0.0162 s |
-| Maxi |     2 | 3.104 s | 0.0392 s | 0.0259 s |
-| Midi |     1 | 2.978 s | 0.0301 s | 0.0199 s |
-| Midi |     2 | 3.000 s | 0.0561 s | 0.0371 s |
-| Mini |     1 | 2.893 s | 0.0297 s | 0.0197 s |
-| Mini |     2 | 1.818 s | 0.0201 s | 0.0133 s |
+| Method | size | level |       Mean |    Error |   StdDev |
+|------- |----- |------ |-----------:|---------:|---------:|
+|   Trie | Maxi |     1 | 3,110.4 ms | 30.30 ms | 20.04 ms |
+|   Trie | Maxi |     2 | 3,232.3 ms | 61.90 ms | 40.94 ms |
+|   Trie | Maxi |     3 | 1,766.3 ms | 34.62 ms | 22.90 ms |
+|   Trie | Midi |     1 | 3,011.7 ms | 73.17 ms | 48.40 ms |
+|   Trie | Midi |     2 | 3,064.4 ms | 89.92 ms | 59.48 ms |
+|   Trie | Midi |     3 | 1,653.1 ms | 31.64 ms | 20.93 ms |
+|   Trie | Mini |     1 | 2,944.2 ms | 54.66 ms | 36.16 ms |
+|   Trie | Mini |     2 | 1,809.4 ms | 18.60 ms | 12.30 ms |
+|   Trie | Mini |     3 |   891.1 ms | 47.77 ms | 31.60 ms |
 ```
 Result?
 {
     Level1.ChainCounter@Maxi = 12,029,640
     Level2.ChainCounter@Maxi = 10,667,703
+    Level3.ChainCounter@Maxi =  5,203,342
 
     Level1.ChainCounter@Midi = 12,029,640
     Level2.ChainCounter@Midi = 10,335,609
+    Level3.ChainCounter@Midi =  4,775,792
 
     Level1.ChainCounter@Mini = 12,029,640
     Level2.ChainCounter@Mini =  6,625,611
+    Level3.ChainCounter@Mini =  2,841,041
 
     So?
     {
@@ -534,7 +540,89 @@ Satisfied(?)
 }
 ```
 ***
-**Math & Life**
+**Real World Benchmark**
 ```
-?
+Nothing changed except a global setup for TrieSolver
+{
+    Trie is ready before running
+    {
+        It will be already ready in a real world scenario
+    }
+}
+
+TrieSolver Level1 vs Level2 vs Level3
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Boggle
+    {
+        [
+            [ "T", "M", "C", "F" ],
+            [ "W", "O", "V", "I" ],
+            [ "A", "H", "X", "E" ],
+            [ "S", "Y", "L", "R" ]
+        ]
+    }
+}
 ```
+| Size | Level |           Mean |        Error |       StdDev |         Median |
+|----- |------ |---------------:|-------------:|-------------:|---------------:|
+| Maxi |     1 | 2,997,337.2 us | 54,888.13 us | 36,305.10 us | 2,999,287.0 us |
+| Maxi |     2 |       150.7 us |      4.24 us |      2.80 us |       150.0 us |
+| Maxi |     3 |       218.1 us |    211.49 us |    139.89 us |       173.3 us |
+| Midi |     1 | 2,967,786.5 us | 64,595.23 us | 42,725.75 us | 2,954,280.2 us |
+| Midi |     2 |       160.5 us |     16.32 us |     10.79 us |       156.7 us |
+| Midi |     3 |       156.3 us |     14.52 us |      9.61 us |       152.8 us |
+| Mini |     1 | 2,950,802.3 us | 42,659.66 us | 28,216.72 us | 2,948,164.2 us |
+| Mini |     2 |       174.4 us |     62.60 us |     41.40 us |       156.7 us |
+| Mini |     3 |       155.9 us |     14.34 us |      9.48 us |       153.4 us |
+```
+Warnings
+{
+    MinIterationTime
+    {
+        The minimum observed iteration time is 147.3000 us which is very small
+            It's recommended to increase it to at least 100.0000 ms using more operations
+        The minimum observed iteration time is 153.9000 us which is very small
+            It's recommended to increase it to at least 100.0000 ms using more operations
+        The minimum observed iteration time is 149.9000 us which is very small
+            It's recommended to increase it to at least 100.0000 ms using more operations
+        ...    
+    }
+}
+
+Outliers
+{
+    3 outliers were detected (145.90 us, 161.10 us, 180.60 us)
+}
+
+Result?
+{
+    I am satisfied
+    {
+        But not impressed!
+    }
+}
+```
+```
+Satisfied(?)
+{
+    Yes => (:
+    No  => ?
+}
+Impressed(?)
+{
+    Yes => (:
+    No  => Next()
+}
+```
+***
+**Next() => ???**
