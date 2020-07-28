@@ -625,5 +625,18 @@ Result?
     }
 }
 ```
+```
+Satisfied(?)
+{
+    Yes, I am satisfied
+    {
+        But, not impressed!
+        {
+            Next()
+        }
+    }
+    No  => Next()
+}
+```
 ***
 **Next() => ???**
