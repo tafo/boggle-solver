@@ -1,12 +1,11 @@
-## BINARY SEARCH
 ```
-Another solver was implemented by using binary search
+FindChainMethod  => DepthFirstSearch
+
+CheckChainMethod => Binary Search
 {
     Dictionaries are already sorted!
 }
-```
-[`Source Code`](https://github.com/tafo/BoggleSolver/blob/BinarySolver/BoggleSolver.Library/BinarySolver.cs)
-```
+
 SlowSolver vs BinarySolver
 {
     Windows 10.0.18362.959 (1903/May2019Update/19H1)
@@ -40,14 +39,16 @@ SlowSolver vs BinarySolver
 ```
 Result?
 {
-    Significant improvement in the performance !!!
-
-    Delete SlowSolver in the next step
+    Significant improvement !!!
+    Retire SlowSolver !!!
 }
 ```
 ```
-Not satisfied?
+Satisfied(?)
+{
+    Yes => !!
+    No  => Next()
+}
 
-So?
 ```
-[`continue`](https://github.com/tafo/BoggleSolver/tree/HashSetSolver)
+[`Next()`](https://github.com/tafo/BoggleSolver/tree/HashSetSolver)
