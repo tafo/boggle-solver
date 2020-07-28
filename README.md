@@ -54,15 +54,17 @@ Check the following evolution steps of TheSolver
 ```
 ***
 **SlowSolver**
+```
+WordSearchMethod => Scanning
+```
 [`Source Code`](https://github.com/tafo/BoggleSolver/blob/SlowSolver/BoggleSolver.Library/SlowSolver.cs)
 ```
 Based on DFS(DepthFirstSearch) approach
 
-WordSearchMethod => Scanning
-
 Not optimized
-
-The start point of the evolution steps
+{
+    The start point of the evolution steps
+}
 
 Called SlowSolver
 {    
