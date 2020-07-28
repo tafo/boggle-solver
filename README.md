@@ -55,12 +55,12 @@ Check the following evolution steps of TheSolver
 ***
 **SlowSolver**
 ```
-WordSearchMethod => Scanning
-```
-[`Source Code`](https://github.com/tafo/BoggleSolver/blob/SlowSolver/BoggleSolver.Library/SlowSolver.cs)
-```
-Based on DFS(DepthFirstSearch) approach
+FindChainMethod  => DepthFirstSearch
 
+CheckChainMethod => Scanning
+```
+[`Source Code`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
+```
 Not optimized
 {
     The start point of the evolution steps
@@ -68,7 +68,7 @@ Not optimized
 
 Called SlowSolver
 {    
-    Because it is very slow for a 4x4 boggle
+    Very slow for a 4x4 boggle
 }
 ```
 ```
@@ -81,12 +81,14 @@ Satisfied(?)
 ***
 **BinarySolver**
 ```
-WordSearchMethod => Binary Search
+FindChainMethod  => DepthFirstSearch
+
+CheckChainMethod => Binary Search
 {
     Dictionaries are already sorted!
 }
 ```
-[`Source Code`](https://github.com/tafo/BoggleSolver/blob/BinarySolver/BoggleSolver.Library/BinarySolver.cs)
+[`Source Code`](https://github.com/tafo/BoggleSolver/tree/BinarySolver)
 ```
 SlowSolver vs BinarySolver
 {
@@ -136,12 +138,17 @@ Satisfied(?)
 ***
 **HashSetSolver**
 ```
-A set contains unique elements
-{
+A set contains unique elements {
     Every word is unique!
 }
+FindChainMethod  => DepthFirstSearch
+
+CheckChainMethod => ?
+{
+    I am open to any kind of requests
+}
 ```
-[`Source Code`](https://github.com/tafo/BoggleSolver/blob/HashSetSolver/BoggleSolver.Library/HashSetSolver.cs)
+[`Source Code`](https://github.com/tafo/BoggleSolver/tree/HashSetSolver)
 ```
 BinarySearchSolver vs HashSetSolver
 {
@@ -179,6 +186,9 @@ Result?
     HashSet is slower for larger dictionaries
     {
         Initialization
+        {
+            From a dictionary file to HashSet<string>
+        }
     }
 
     The minimum observed iteration time is 7.3236 ms which is very small!
