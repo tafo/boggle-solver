@@ -50,10 +50,188 @@ All Valid Words
 Finds all possible words in the given grid
 ```
 ```
-A boggle solver was implemented by DFS(DepthFirstSearch) approach
+Check the following evolution steps of TheSolver
 ```
+***
+**SlowSolver**
+[`Source Code`](https://github.com/tafo/BoggleSolver/blob/SlowSolver/BoggleSolver.Library/SlowSolver.cs)
+```
+Based on DFS(DepthFirstSearch) approach
 
-[`CLICK TO SEE PREVIOUS VERSIONS AND BENCHMARKS`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
+WordSearchMethod => Scanning
+
+Not optimized
+
+The start point of the evolution steps
+
+Called SlowSolver
+{    
+    Because it is very slow for a 4x4 boggle
+}
+```
+```
+Satisfied(?)
+{
+    Yes => !!!
+    No  => Next()
+}
+```
+***
+**BinarySolver**
+```
+WordSearchMethod => Binary Search
+{
+    Dictionaries are already sorted!
+}
+```
+[`Source Code`](https://github.com/tafo/BoggleSolver/blob/BinarySolver/BoggleSolver.Library/BinarySolver.cs)
+```
+SlowSolver vs BinarySolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Boggle
+    {
+        [
+            [ "W", "O", "R" ],
+            [ "C", "D", "L" ],
+            [ "K", "A", "M" ]
+        ]
+    }
+}
+```
+| Solver | Dict |          Mean |       Error |      StdDev |
+|--------|----- |--------------:|------------:|------------:|
+| Slow   | Mini |  2,245.407 ms |  31.4585 ms |  20.8078 ms |
+| Binary | Mini |     18.564 ms |    1.222 ms |   0.8081 ms |
+| Slow   | Midi |  7,669.591 ms | 263.0141 ms | 173.9676 ms |
+| Binary | Midi |     29.315 ms |   2.102 ms  |   1.3902 ms |
+| Slow   | Maxi | 16,611.425 ms | 385.2566 ms | 254.8234 ms |
+| Binary | Maxi |     61.492 ms |   3.7198 ms |   2.4604 ms |
+```
+Result?
+{
+    Significant improvement !!!
+    Retire SlowSolver !!!
+}
+```
+```
+Satisfied(?)
+{
+    Yes => !!
+    No  => Next()
+}
+
+```
+***
+**HashSetSolver**
+```
+A set contains unique elements
+{
+    Every word is unique!
+}
+```
+[`Source Code`](https://github.com/tafo/BoggleSolver/blob/HashSetSolver/BoggleSolver.Library/HashSetSolver.cs)
+```
+BinarySearchSolver vs HashSetSolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Boggle
+    {
+        [
+            [ "W", "O", "R" ],
+            [ "C", "D", "L" ],
+            [ "K", "A", "M" ]
+        ]
+    }
+}
+```
+| Solver       | Dict |      Mean |    Error |    StdDev |
+|------------- |----- |----------:|---------:|----------:|
+| BinarySearch | Maxi | 44.999 ms | 1.233 ms | 0.8154 ms |
+|      HashSet | Maxi | 62.794 ms | 6.370 ms | 4.2133 ms |
+| BinarySearch | Midi | 28.731 ms | 2.844 ms | 1.8813 ms |
+|      HashSet | Midi | 30.020 ms | 5.479 ms | 3.6239 ms |
+| BinarySearch | Mini | 18.634 ms | 4.394 ms | 2.9062 ms |
+|      HashSet | Mini |  8.243 ms | 1.143 ms | 0.7558 ms |
+```
+Result?
+{ 
+    HashSet is slower for larger dictionaries
+    {
+        Initialization
+    }
+
+    The minimum observed iteration time is 7.3236 ms which is very small!
+    So?
+    It is the time to use a 4x4 Boggle
+}
+```
+```
+BinarySearchSolver vs HashSetSolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Boggle
+    {
+        [
+            [ "T", "M", "C", "F" ],
+            [ "W", "O", "V", "I" ],
+            [ "A", "H", "X", "E" ],
+            [ "S", "Y", "L", "R" ]
+        ]
+    }
+}
+```
+|       Method | Dict |     Mean |    Error |   StdDev |
+|------------- |----- |---------:|---------:|---------:|
+| BinarySearch | Maxi | 17.306 s | 0.2815 s | 0.1862 s |
+|      HashSet | Maxi |  3.199 s | 0.0983 s | 0.0650 s |
+| BinarySearch | Midi | 16.205 s | 0.0914 s | 0.0605 s |
+|      HashSet | Midi |  2.726 s | 0.0753 s | 0.0498 s |
+| BinarySearch | Mini | 14.523 s | 0.1291 s | 0.0854 s |
+|      HashSet | Mini |  2.433 s | 0.0593 s | 0.0392 s |
+```
+Result?
+{ 
+    Significant improvement !!!
+    Retire BinarySearchSolver !!
+}
+```
+```
+Satisfied(?)
+{
+    Yes => !
+    No  => Next()
+}
+```
+***
+**TrieSolvr**
 ```
 IndexSolver vs Trie(3 letter chain)
 {
