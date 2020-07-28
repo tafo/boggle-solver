@@ -361,7 +361,6 @@ Satisfied(?)
     No  => Next()
 }
 ```
-(#TrieSolver)
 ***
 **TrieSolver**
 ```
