@@ -355,7 +355,6 @@ Is there any word that starts with "GGG", "RRR", "WXQ", ... ?
 ```
 [`IndexSolver???`](https://github.com/tafo/BoggleSolver/blob/IndexSolver)
 ```
-```
 Satisfied(?)
 {
     Yes => ??
