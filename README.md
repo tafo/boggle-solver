@@ -424,6 +424,7 @@ Satisfied(?)
 }
 ```
 **Math and Life**
+```
 ACE, ACT, ADD =>
 {
     A(CE, CT, ADD) => 
