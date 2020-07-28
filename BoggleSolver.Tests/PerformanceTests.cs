@@ -15,33 +15,18 @@ namespace BoggleSolver.Tests
         }
 
         [Theory]
-        [InlineData(TheBook.Mini)]
-        [InlineData(TheBook.Midi)]
-        [InlineData(TheBook.Maxi)]
+        [InlineData(WordBook.Mini)]
+        [InlineData(WordBook.Midi)]
+        [InlineData(WordBook.Maxi)]
         public void Validate_TrieSolver(string size)
         {
-            var solver = new TrieSolver { RootTrie = TheBook.GetTrie(size) };
+            var solver = new Solver(size);
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);
             timer.Stop();
 
             _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
             _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
-        }
-
-        [Theory]
-        [InlineData(TheBook.Mini)]
-        [InlineData(TheBook.Midi)]
-        [InlineData(TheBook.Maxi)]
-        public void Test_IndexSolver(string size)
-        {
-            var solver = new IndexSolver { WordBook = TheBook.GetIndex(size) };
-            var timer = Stopwatch.StartNew();
-            var result = solver.Run(TestData.Boggle);
-            timer.Stop();
-
-            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
-            _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
         }
     }
 }

@@ -2,8 +2,15 @@
 
 namespace BoggleSolver.Library
 {
-    public class TrieSolver
+    public class Solver
     {
+        public Solver(string dictionarySize)
+        {
+            RootTrie = new LetterTrie();
+            var words = WordBook.GetWords(dictionarySize);
+            Array.ForEach(words, word => { RootTrie.Set(word); });
+        }
+
         public LetterTrie RootTrie { get; set; }
 
         public int ChainCounter { get; set; }
@@ -62,19 +69,15 @@ namespace BoggleSolver.Library
 
                 if (chain.Length > boggle.Size) return false;
 
-                var trie = RootTrie[chain[0]]?[chain[1]]?[chain[2]];
-
-                if (trie == null) return false;
-
-                switch (chain.Length)
+                switch (RootTrie.Check(chain))
                 {
-                    case 3:
-                        if (trie.Words.Contains(chain)) result.Add(chain);
+                    case -1:
+                        return false;
+                    case 0:
+                        // ToDo: !
                         break;
-                    default:
-                        trie = trie[chain[3]];
-                        if (trie == null) return false;
-                        if (trie.Words.Contains(chain)) result.Add(chain);
+                    case 1:
+                        result.Words.Add(chain);
                         break;
                 }
 

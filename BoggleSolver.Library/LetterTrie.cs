@@ -4,30 +4,52 @@ namespace BoggleSolver.Library
 {
     public class LetterTrie
     {
-        public static bool IsReadOnly { get; set; }
-        public static int Level = 3;
+        public static int Level = 1;
         public char Letter { get; set; }
-        public List<LetterTrie> Children { get; set; }
+        public List<LetterTrie> Letters { get; set; }
         public HashSet<string> Words { get; set; }
 
         public LetterTrie(char letter = '#')
         {
             Letter = letter;
-            Children = new List<LetterTrie>();
+            Letters = new List<LetterTrie>();
             Words = new HashSet<string>();
         }
 
-        public LetterTrie this[char letter]
+        private LetterTrie this[char c] => Letters.Find(x => x.Letter == c);
+
+        public void Set(string word)
         {
-            get
+            var trie = Level switch
             {
-                var find = Children.Find(x => x.Letter == letter);
-                if (IsReadOnly) return find;
-                if (find != null) return find;
-                find = new LetterTrie(letter);
-                Children.Add(find);
-                return find;
-            }
+                1 => Get(word[0]),
+                2 => Get(word[0]).Get(word[1]),
+                _ => Get(word[0]),
+            };
+
+            trie.Words.Add(word);
+        }
+
+        private LetterTrie Get(char c)
+        {
+            var letter = Letters.Find(x => x.Letter == c);
+            if (letter != null) return letter;
+            letter = new LetterTrie(c);
+            Letters.Add(letter);
+            return letter;
+        }
+
+        public int Check(string chain)
+        {
+            var trie = Level switch
+            {
+                1 => this[chain[0]],
+                2 => this[chain[0]][chain[1]],
+                _ => this[chain[0]],
+            };
+
+            if (trie == null) return -1;
+            return trie.Words.Contains(chain) ? 1 : 0;
         }
     }
 }

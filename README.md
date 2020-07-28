@@ -245,80 +245,195 @@ Satisfied(?)
 }
 ```
 ***
+**DictionarySolver**
+```
+Dictionaries have a section for every letter
+
+Every word was mapped to its first letter
+```
+[`DictionarySolver`](https://github.com/tafo/BoggleSolver/tree/DictionarySolver)
+```
+HashSetSolver vs DictionarySolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Boggle
+    {
+        [
+            [ "T", "M", "C", "F" ],
+            [ "W", "O", "V", "I" ],
+            [ "A", "H", "X", "E" ],
+            [ "S", "Y", "L", "R" ]
+        ]
+    }
+}
+```
+|     Method | Size |    Mean |    Error |   StdDev |
+|----------- |----- |--------:|---------:|---------:|
+| Dictionary | Maxi | 2.372 s | 0.0832 s | 0.0550 s |
+|    HashSet | Maxi | 3.001 s | 0.0604 s | 0.0399 s |
+| Dictionary | Midi | 2.340 s | 0.0659 s | 0.0436 s |
+|    HashSet | Midi | 2.580 s | 0.0941 s | 0.0622 s |
+| Dictionary | Mini | 2.294 s | 0.0329 s | 0.0218 s |
+|    HashSet | Mini | 2.323 s | 0.0867 s | 0.0574 s |
+```
+Result?
+{
+    A fine performance improvement !!
+}
+```
+
+```
+Satisfied(?)
+{
+    Yes => ???
+    No  => Next()
+}
+```
+**IndexSolver**
+```
+How do we search a subject(word) in a book?
+How do we search on the NET?
+How do we search ...?
+```
+[Index@Wikipedia](https://en.wikipedia.org/wiki/Index)
+
+[SubjectIndexing@Wikipedia](https://en.wikipedia.org/wiki/Subject_indexing)
+```
+Content(Subject Indexing)
+{
+    Subject indexing is the act of describing or classifying a document by index terms or other symbols 
+    in order to 
+    {
+        indicate what the document is about, 
+        to summarize its content,
+        to increase its findability,
+        ...
+    }
+}
+
+How many chains were checked in DictionarySolver?
+{
+    DictionarySolver.ChainCounter = 12,029,640 !!!
+    {
+        There are 281279 words even in Maxi!
+    }
+
+    How many chains are checked for a 5x5 boggle?
+    {
+        ...
+    }
+}
+
+Is there any word that starts with "GGG", "RRR", "WXQ", ... ?
+{
+    Remember the rule "Words must be at least 3 characters"
+
+    Boggle
+    {
+        W X Q
+        A B C
+        X Y Z
+    }
+
+    Even if there is no word that starts with WXQ in a dictionary
+    {
+        DictionarySolver continues to find chains that start with WXQ and checks them
+            WXQC => WXQCs
+            WXQB => WXQBs        
+        So?
+    }
+}
+```
+[`IndexSolver???`](https://github.com/tafo/BoggleSolver/blob/IndexSolver)
+```
+```
+Satisfied(?)
+{
+    Yes => ??
+    No  => Next()
+}
+```
+***
 **TrieSolver**
 ```
-IndexSolver vs Trie(3 letter chain)
+2 (x + y) = ?
+```
+[Trie@Wikipedia](https://en.wikipedia.org/wiki/Trie)
+```
+Trie?
 {
-    Windows 10.0.18362.959 (1903/May2019Update/19H1)
-    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+    {[(REUSABILITY)]}
+}
 
-    Dict
+Check the following words
+{
+    ACE
+    ACT
+    ADD
+}
+
+Is there any repeating letter?
+{
+    Yes
     {
-        Maxi    = 281,279 Words
-        Midi    = 129,552 Words
-        Mini    =  39,096 Words    
+        "A"
     }
+}
 
-    Boggle
+Is there any way to write the words without repeating same "A" again and again?
+{
+    Yes
     {
-        [
-            [ "T", "M", "C", "F" ],
-            [ "W", "O", "V", "I" ],
-            [ "A", "H", "X", "E" ],
-            [ "S", "Y", "L", "R" ]
-        ]
+        A(CE, CT, ADD)
+        {
+            Actually, we all know this method
+            {
+                It is Math!
+                {
+                    3 * (2x + 3y + z) = 6x + 9y + 3z
+                }                           
+            }
+        }
     }
 }
 ```
-| Method | Size |       Mean |     Error |    StdDev |
-|------- |----- |-----------:|----------:|----------:|
-|   Trie | Maxi | 1,734.1 ms |   9.18 ms |   6.07 ms |
-|  Index | Maxi | 1,504.1 ms | 477.62 ms | 315.91 ms |
-|   Trie | Midi | 1,539.7 ms |  16.16 ms |  10.69 ms |
-|  Index | Midi | 1,284.4 ms |   5.44 ms |   3.60 ms |
-|   Trie | Mini |   902.5 ms |   6.49 ms |   4.29 ms |
-|  Index | Mini |   762.1 ms |   5.84 ms |   3.86 ms |
+| Method | Size | Level |    Mean |    Error |   StdDev |
+|------- |----- |------ |--------:|---------:|---------:|
+|   Trie | Maxi |     1 | 3.061 s | 0.0474 s | 0.0313 s |
+|   Trie | Midi |     1 | 2.970 s | 0.0540 s | 0.0357 s |
+|   Trie | Mini |     1 | 2.907 s | 0.0428 s | 0.0283 s |
 ```
 Result?
 {
-    Check 4 letter chain
+    Elegant Solution !!!    
 }
 ```
 ```
-IndexSolver vs Trie(4 letter chain)
+Satisfied(?)
 {
-    Windows 10.0.18362.959 (1903/May2019Update/19H1)
-    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
-
-    Dict
+    Yes => ?
+    No  => Next()
+}
+```
+**Math and Life**
+ACE, ACT, ADD =>
+{
+    A(CE, CT, ADD) => 
     {
-        Maxi    = 281,279 Words
-        Midi    = 129,552 Words
-        Mini    =  39,096 Words    
-    }
-
-    Boggle
-    {
-        [
-            [ "T", "M", "C", "F" ],
-            [ "W", "O", "V", "I" ],
-            [ "A", "H", "X", "E" ],
-            [ "S", "Y", "L", "R" ]
-        ]
+        A[C(E,T),DD]
     }
 }
-```
-| Method | Size |       Mean |    Error |   StdDev |
-|------- |----- |-----------:|---------:|---------:|
-|   Trie | Maxi |   539.6 ms |  3.50 ms |  2.32 ms |
-|  Index | Maxi | 1,416.1 ms | 10.95 ms |  7.24 ms |
-|   Trie | Midi |   408.8 ms |  1.59 ms |  1.05 ms |
-|  Index | Midi | 1,313.7 ms | 10.41 ms |  6.88 ms |
-|   Trie | Mini |   148.1 ms |  7.37 ms |  4.87 ms |
-|  Index | Mini |   778.1 ms | 17.72 ms | 11.72 ms |
-```
-Result?
+
+So?
 {
-    IndexSolver is retired!
+    Even the above code explains ...
 }
-```
