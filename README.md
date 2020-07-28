@@ -1,22 +1,25 @@
-## SLOW SOLVER
-[`Source Code`](https://github.com/tafo/BoggleSolver/blob/SlowSolver/BoggleSolver.Library/SlowSolver.cs)
 ```
-Based on DFS(DepthFirstSearch) approach
+FindChainMethod  => DepthFirstSearch
 
+CheckChainMethod => Scanning
+```
+[`Source Code`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
+```
 Not optimized
-
-The start point of the evolution steps
-
-Uses linear search for word checking
+{
+    The start point of the evolution steps
+}
 
 Called SlowSolver
-{
-    Because it is very slow for a 4x4 boggle
+{    
+    Very slow for a 4x4 boggle
 }
 ```
 ```
-Not satisfied!
-
-So? 
+Satisfied(?)
+{
+    Yes => !!!
+    No  => Next()
+}
 ```
-[`continue`](https://github.com/tafo/BoggleSolver/tree/BinarySolver)
+[`Next()`](https://github.com/tafo/BoggleSolver/tree/BinarySolver)
