@@ -1,4 +1,6 @@
-﻿using System.IO;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Engines;
 using BenchmarkDotNet.Jobs;
@@ -13,26 +15,27 @@ namespace BoggleSolver.Benchmark
         [Params(WordBook.Mini, WordBook.Midi, WordBook.Maxi)]
         public string Size;
 
-        [Params(1, 2, 3)] public int Level;
+        [Params(3, 4)] public int Level;
 
         private BoggleModel _boggle;
 
-        private Solver _solver;
+        private Dictionary<string, LetterTrie> _tries;
 
         [GlobalSetup]
         public void GlobalSetup()
         {
             var json = File.ReadAllText($"{Directory.GetCurrentDirectory()}/Boggle.json");
             _boggle = JsonConvert.DeserializeObject<BoggleModel>(json);
-            _solver = new Solver(Size);
+            var levels = new[] {3, 4};
+            var sizes = new[] {WordBook.Mini, WordBook.Midi, WordBook.Maxi};
+            _tries = new Dictionary<string, LetterTrie>();
+            Array.ForEach(sizes, size => Array.ForEach(levels, L => _tries.Add(size + L, size.GetTrie(L))));
         }
-
 
         [Benchmark]
         public void Trie()
         {
-            LetterTrie.Level = Level;
-            _solver.Run(_boggle);
+            new Solver { RootTrie = _tries[Size + Level], TrieLevel = Level }.Run(_boggle);
         }
     }
 }

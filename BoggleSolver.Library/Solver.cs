@@ -4,12 +4,7 @@ namespace BoggleSolver.Library
 {
     public class Solver
     {
-        public Solver(string dictionarySize)
-        {
-            RootTrie = new LetterTrie();
-            var words = WordBook.GetWords(dictionarySize);
-            Array.ForEach(words, word => { RootTrie.Set(word); });
-        }
+        public int TrieLevel { get; set; }
 
         public LetterTrie RootTrie { get; set; }
 
@@ -69,7 +64,7 @@ namespace BoggleSolver.Library
 
                 if (chain.Length > boggle.Size) return false;
 
-                switch (RootTrie.Check(chain))
+                switch (RootTrie.Check(chain, TrieLevel))
                 {
                     case -1:
                         return false;

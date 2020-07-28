@@ -1,53 +1,54 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace BoggleSolver.Library
 {
     public class LetterTrie
     {
-        public static int Level = 1;
-        public char Letter { get; set; }
+        public int LetterCode { get; set; }
         public List<LetterTrie> Letters { get; set; }
         public HashSet<string> Words { get; set; }
 
-        public LetterTrie(char letter = '#')
+        public LetterTrie(int letterCode = -1)
         {
-            Letter = letter;
+            LetterCode = letterCode;
             Letters = new List<LetterTrie>();
             Words = new HashSet<string>();
         }
 
-        private LetterTrie this[char c] => Letters.Find(x => x.Letter == c);
-
-        public void Set(string word)
+        private LetterTrie this[int i]
         {
-            var trie = Level switch
+            get
             {
-                1 => Get(word[0]),
-                2 => Get(word[0]).Get(word[1]),
-                3 => Get(word[0]).Get(word[1]).Get(word[2]),
-                _ => Get(word[0]),
+                var trie = Letters.Find(x => x.LetterCode == i);
+                if (trie != null) return trie;
+                trie = new LetterTrie(i);
+                Letters.Add(trie);
+                return trie;
+            }
+        }
+
+        private LetterTrie this[char c] => Letters.Find(x => x.LetterCode == c);
+
+        public void Set(string word, int level)
+        {
+            var chainSize = Math.Min(word.Length, level);
+            var trie = chainSize switch
+            {
+                4 => this[word.L0()][word.L1()][word.L2()][word.L3()],
+                _ => this[word.L0()][word.L1()][word.L2()],
             };
 
             trie.Words.Add(word);
         }
 
-        private LetterTrie Get(char c)
+        public int Check(string chain, int level)
         {
-            var letter = Letters.Find(x => x.Letter == c);
-            if (letter != null) return letter;
-            letter = new LetterTrie(c);
-            Letters.Add(letter);
-            return letter;
-        }
-
-        public int Check(string chain)
-        {
-            var trie = Level switch
+            var chainSize = Math.Min(chain.Length, level);
+            var trie = chainSize switch
             {
-                1 => this[chain[0]],
-                2 => this[chain[0]]?[chain[1]],
-                3 => this[chain[0]]?[chain[1]]?[chain[2]],
-                _ => this[chain[0]],
+                4 => this[chain[0]]?[chain[1]]?[chain[2]]?[chain[3]],
+                _ => this[chain[0]]?[chain[1]]?[chain[2]],
             };
 
             if (trie == null) return -1;

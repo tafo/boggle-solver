@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using BoggleSolver.Library;
@@ -17,71 +16,69 @@ namespace BoggleSolver.Tests
         public SolverTest(ITestOutputHelper testOutput)
         {
             _testOutput = testOutput;
+            GetBoggles();
         }
 
         [Theory]
-        [MemberData(nameof(PerformanceData))]
-        public void Check_Performance(string size, int level)
+        [InlineData(3, WordBook.Maxi, MiniBoggle)]
+        [InlineData(3, WordBook.Midi, MiniBoggle)]
+        [InlineData(3, WordBook.Mini, MiniBoggle)]
+        [InlineData(4, WordBook.Maxi, MiniBoggle)]
+        [InlineData(4, WordBook.Midi, MiniBoggle)]
+        [InlineData(4, WordBook.Mini, MiniBoggle)]
+        public void Check_Performance(int level, string dictionarySize, string boggleSize)
         {
-            LetterTrie.Level = level;
-            var solver = new Solver(size);
+            var boggle = GetBoggle(boggleSize);
+            var solver = new Solver { RootTrie = dictionarySize.GetTrie(level), TrieLevel = level };
             var timer = Stopwatch.StartNew();
-            var result = solver.Run(Boggle);
+            var result = solver.Run(boggle);
             timer.Stop();
 
-            _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
+            _testOutput.WriteLine($"Checked { solver.ChainCounter} chains");
             _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
         }
 
         [Theory]
-        [MemberData(nameof(ResultData))]
-        public void Check_Result(string size, int level)
+        [InlineData(3, TestBoggle)]
+        [InlineData(3, MiniBoggle)]
+        [InlineData(4, TestBoggle)]
+        [InlineData(4, MiniBoggle)]
+        public void Check_Result(int level, string boggleSize)
         {
-            LetterTrie.Level = level;
-            var solver = new Solver(size);
+            var solver = new Solver { RootTrie = WordBook.Test.GetTrie(level), TrieLevel = level };
+            var boggle = GetBoggle(boggleSize);
             var timer = Stopwatch.StartNew();
-            var result = solver.Run(Boggle);
+            var result = solver.Run(boggle);
             timer.Stop();
 
             _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
             _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
             result.Words.ToList().ForEach(x => _testOutput.WriteLine(x));
-            result.Words.Count.Should().Be(Boggle.Count);
-            result.Score.Should().Be(Boggle.Score);
+            result.Words.Count.Should().Be(boggle.Count);
+            result.Score.Should().Be(boggle.Score);
         }
 
-        public static IEnumerable<object[]> ResultData
-            => new[]
+        private static BoggleModel GetBoggle(string size) =>
+            size switch
             {
-                new object[] {WordBook.Test, 1},
-                new object[] {WordBook.Test, 2},
-                new object[] {WordBook.Test, 3},
+                TestBoggle => _boggles[0],
+                MiniBoggle => _boggles[1],
+                _ => _boggles[0],
             };
 
-        public static IEnumerable<object[]> PerformanceData
-            => new[]
-            {
-                new object[] {WordBook.Mini, 1},
-                new object[] {WordBook.Mini, 2},
-                new object[] {WordBook.Mini, 3},
-                new object[] {WordBook.Midi, 1},
-                new object[] {WordBook.Midi, 2},
-                new object[] {WordBook.Midi, 3},
-                new object[] {WordBook.Maxi, 1},
-                new object[] {WordBook.Maxi, 2},
-                new object[] {WordBook.Maxi, 3},
-            };
+        private static BoggleModel[] _boggles;
 
-        private static BoggleModel _boggle;
-        public static BoggleModel Boggle
+        public static BoggleModel[] GetBoggles()
         {
-            get
-            {
-                if (_boggle != null) return _boggle;
-                var json = File.ReadAllText($"{Directory.GetCurrentDirectory()}/Boggle.json");
-                _boggle = JsonConvert.DeserializeObject<BoggleModel>(json);
-                return _boggle;
-            }
+            if (_boggles != null) return _boggles;
+            var json = File.ReadAllText($"{Directory.GetCurrentDirectory()}/Boggles.json");
+            _boggles = JsonConvert.DeserializeObject<BoggleModel[]>(json);
+            return _boggles;
         }
+
+        private const string TestBoggle = "Test";
+        private const string MiniBoggle = "Mini";
+        private const string MidiBoggle = "Midi";
+        private const string MaxiBoggle = "Maxi";
     }
 }

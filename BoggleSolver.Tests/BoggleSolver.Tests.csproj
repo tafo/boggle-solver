@@ -19,8 +19,8 @@
   </ItemGroup>
 
     <ItemGroup>
-        <None Update="boggle.json">
-            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        <None Update="Boggles.json">
+          <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>
 </Project>
