@@ -133,7 +133,6 @@ Satisfied(?)
     Yes => !!
     No  => Next()
 }
-
 ```
 ***
 **HashSetSolver**
@@ -247,9 +246,11 @@ Satisfied(?)
 ***
 **DictionarySolver**
 ```
-Dictionaries have a section for every letter
-
-Every word was mapped to its first letter
+```
+Why dictionaries have another section for each letter?
+{
+    Every word is mapped to its first letter
+}
 ```
 [`DictionarySolver`](https://github.com/tafo/BoggleSolver/tree/DictionarySolver)
 ```
@@ -353,7 +354,7 @@ Is there any word that starts with "GGG", "RRR", "WXQ", ... ?
     }
 }
 ```
-[`IndexSolver???`](https://github.com/tafo/BoggleSolver/blob/IndexSolver)
+IndexSolver = ?
 ```
 Satisfied(?)
 {
@@ -361,6 +362,7 @@ Satisfied(?)
     No  => Next()
 }
 ```
+(#TrieSolver)
 ***
 **TrieSolver**
 ```
