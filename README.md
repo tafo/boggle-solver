@@ -2,9 +2,7 @@
 FindChainMethod  => DepthFirstSearch
 
 CheckChainMethod => Scanning
-```
-[`Source Code`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
-```
+
 Not optimized
 {
     The start point of the evolution steps
