@@ -362,7 +362,7 @@ Satisfied(?)
 }
 ```
 ***
-**TrieSolver**(#TrieSolver)
+**TrieSolver**
 ```
 2 (x + y) = ?
 ```
