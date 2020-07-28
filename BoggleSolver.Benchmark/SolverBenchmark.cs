@@ -13,7 +13,7 @@ namespace BoggleSolver.Benchmark
         [Params(WordBook.Mini, WordBook.Midi, WordBook.Maxi)]
         public string Size;
 
-        [Params(1)] public int Level;
+        [Params(1, 2)] public int Level;
 
         public BoggleModel Boggle { get; set; }
 

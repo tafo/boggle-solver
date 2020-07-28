@@ -15,11 +15,15 @@ namespace BoggleSolver.Tests
         }
 
         [Theory]
-        [InlineData(WordBook.Mini)]
-        [InlineData(WordBook.Midi)]
-        [InlineData(WordBook.Maxi)]
-        public void Validate_TrieSolver(string size)
+        [InlineData(WordBook.Mini, 1)]
+        [InlineData(WordBook.Midi, 1)]
+        [InlineData(WordBook.Maxi, 1)]
+        [InlineData(WordBook.Mini, 2)]
+        [InlineData(WordBook.Midi, 2)]
+        [InlineData(WordBook.Maxi, 2)]
+        public void Validate_TrieSolver(string size, int level)
         {
+            LetterTrie.Level = level;
             var solver = new Solver(size);
             var timer = Stopwatch.StartNew();
             var result = solver.Run(TestData.Boggle);

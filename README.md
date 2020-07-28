@@ -405,6 +405,30 @@ Is there any way to write the words without repeating same "A" again and again?
     }
 }
 ```
+```
+TrieSolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Boggle
+    {
+        [
+            [ "T", "M", "C", "F" ],
+            [ "W", "O", "V", "I" ],
+            [ "A", "H", "X", "E" ],
+            [ "S", "Y", "L", "R" ]
+        ]
+    }
+}
+```
 | Method | Size | Level |    Mean |    Error |   StdDev |
 |------- |----- |------ |--------:|---------:|---------:|
 |   Trie | Maxi |     1 | 3.061 s | 0.0474 s | 0.0313 s |
@@ -413,7 +437,18 @@ Is there any way to write the words without repeating same "A" again and again?
 ```
 Result?
 {
-    Elegant Solution !!!    
+    Symbols => "[", "(", ")", "]", ...
+
+    #TrieCost
+    If(Searching("ACEACTADD").Cost > Searching("ACETDD").Cost + Adding(Symbols))
+    {
+        Use Trie !!!
+    }
+
+    Elegant Solution!
+    {
+        Very extensible!
+    }
 }
 ```
 ```
@@ -423,17 +458,84 @@ Satisfied(?)
     No  => Next()
 }
 ```
-**Math and Life**
+**Math**
 ```
 ACE, ACT, ADD =>
 {
-    A(CE, CT, ADD) => 
-    {
+    #Level1
+    A(CE, CT, ADD) >>> Dictionary["A"] = {"CE", "CT", "ADD"}
+    {      
+        #Level2
         A[C(E,T),DD]
+        {
+            So?
+            {
+                GoTo #TrieCost
+            }
+        }
     }
 }
-
-So?
+```
+```
+TrieSolver Level1 vs Level2
 {
-    Even the above code explains ...
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Boggle
+    {
+        [
+            [ "T", "M", "C", "F" ],
+            [ "W", "O", "V", "I" ],
+            [ "A", "H", "X", "E" ],
+            [ "S", "Y", "L", "R" ]
+        ]
+    }
 }
+```
+| Size | Level |    Mean |    Error |   StdDev |
+|----- |------ |--------:|---------:|---------:|
+| Maxi |     1 | 3.133 s | 0.0245 s | 0.0162 s |
+| Maxi |     2 | 3.104 s | 0.0392 s | 0.0259 s |
+| Midi |     1 | 2.978 s | 0.0301 s | 0.0199 s |
+| Midi |     2 | 3.000 s | 0.0561 s | 0.0371 s |
+| Mini |     1 | 2.893 s | 0.0297 s | 0.0197 s |
+| Mini |     2 | 1.818 s | 0.0201 s | 0.0133 s |
+```
+```
+Result?
+{
+    Level1.ChainCounter@Maxi = 12,029,640
+    Level2.ChainCounter@Maxi = 10,667,703
+
+    Level1.ChainCounter@Midi = 12,029,640
+    Level2.ChainCounter@Midi = 10,335,609
+
+    Level1.ChainCounter@Mini = 12,029,640
+    Level2.ChainCounter@Mini =  6,625,611
+
+    So?
+    {
+        GoTo #TrieCost
+    }
+}
+```
+```
+Satisfied(?)
+{
+    Yes => (:
+    No  => Next()
+}
+```
+***
+**Math & Life**
+```
+?
+```
