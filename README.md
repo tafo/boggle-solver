@@ -49,4 +49,4 @@ Satisfied(?)
     No  => Next()
 }
 ```
-[`Next()`](https://github.com/tafo/BoggleSolver/tree/IndexSolver)
+[`Next()`](https://github.com/tafo/BoggleSolver)
