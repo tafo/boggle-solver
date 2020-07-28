@@ -1,12 +1,16 @@
-## HASH SET
 ```
-Set?
+A set contains unique elements 
 {
-    A collection that contains no duplicate elements.
+    Every word is unique!
 }
-```
-[`Source Code`](https://github.com/tafo/BoggleSolver/blob/HashSetSolver/BoggleSolver.Library/HashSetSolver.cs)
-```
+
+FindChainMethod  => DepthFirstSearch
+
+CheckChainMethod => ?
+{
+    I am open to any kind of requests
+}
+
 BinarySearchSolver vs HashSetSolver
 {
     Windows 10.0.18362.959 (1903/May2019Update/19H1)
@@ -40,14 +44,15 @@ BinarySearchSolver vs HashSetSolver
 ```
 Result?
 { 
-    Why HashSet is slower for larger dictionaries?
+    HashSet is slower for larger dictionaries
     {
-        The initialization operations of HashSet
+        Initialization
+        {
+            From a dictionary file to HashSet<string>
+        }
     }
 
-    AND!    
     The minimum observed iteration time is 7.3236 ms which is very small!
-
     So?
     It is the time to use a 4x4 Boggle
 }
@@ -87,12 +92,15 @@ BinarySearchSolver vs HashSetSolver
 ```
 Result?
 { 
-    Another significant improvement in the performance !!!
+    Significant improvement !!!
+    Retire BinarySearchSolver !!
 }
 ```
 ```
-Not satisfied?
-
-So?
+Satisfied(?)
+{
+    Yes => !
+    No  => Next()
+}
 ```
-[`continue`](https://github.com/tafo/BoggleSolver/tree/DictionarySolver)
+[`Next()`](https://github.com/tafo/BoggleSolver/tree/DictionarySolver)
