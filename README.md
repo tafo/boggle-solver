@@ -243,7 +243,7 @@ Satisfied(?)
 }
 ```
 ***
-**TrieSolvr**
+**TrieSolver**
 ```
 IndexSolver vs Trie(3 letter chain)
 {
