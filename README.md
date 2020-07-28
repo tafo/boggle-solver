@@ -361,9 +361,8 @@ Satisfied(?)
     No  => Next()
 }
 ```
-(#TrieSolver)
 ***
-**TrieSolver**
+**TrieSolver**(#TrieSolver)
 ```
 2 (x + y) = ?
 ```
