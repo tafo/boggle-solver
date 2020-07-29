@@ -34,6 +34,7 @@ namespace BoggleSolver.Tests
 
             _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
             _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
+            _testOutput.WriteLine($"Score = {result.Score}");
         }
 
         [Theory]
