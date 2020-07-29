@@ -1,7 +1,7 @@
 ```
 2 (x + y) = ?
 ```
-[Trie@Wikipedia](https://en.wikipedia.org/wiki/Trie)
+[`SourceCode`](https://github.com/tafo/BoggleSolver/tree/TrieSolver)
 ```
 Trie?
 {
@@ -389,7 +389,7 @@ Why?
         }
     }
 }
-So?
+Result?
 {
     Clearly!
     ChainCounter should be equal to the number of words in the given boggle
@@ -416,4 +416,436 @@ Satisfied(?)
     No  => Next()
 }
 ```
+**LetterLake vs LetterSea**
+```
+TrieSolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Level = MaxWordLength
+    {
+        58@Maxi
+        {
+            LLANFAIRPWLLGWYNGYLLGOGERYCHWYRNDROBWLLLLANTYSILIOGOGOGOCH
+        }
+        45@Midi
+        {
+            PNEUMONOULTRAMICROSCOPICSILICOVOLCANOCONIOSIS
+        }
+        18@Mini
+        {
+            CHARACTERISTICALLY
+            INSTITUTIONALIZING
+            MISREPRESENTATIONS
+            OVERSIMPLIFICATION
+            TELECOMMUNICATIONS
+        }
+    }
+
+    Boggle
+    {
+        [
+            [ "T", "M", "C", "F" ],
+            [ "W", "O", "V", "I" ],
+            [ "A", "H", "X", "E" ],
+            [ "S", "Y", "L", "R" ]
+        ]
+    }
+}
+```
+| Size |     Mean |    Error |    StdDev |
+|----- |---------:|---------:|----------:|
+| Mini | 468.5 us | 143.7 us |  95.04 us |
+| Midi | 719.2 us | 165.5 us | 109.48 us |
+| Maxi | 901.9 us | 224.0 us | 148.16 us |
+
+```
+Result?
+{
+    1 us : 1 Microsecond (0.000001 sec)
+    
+    Warnings
+    {
+        The minimum observed iteration time is 764.3000 us which is very small
+        The minimum observed iteration time is 617.0000 us which is very small
+        The minimum observed iteration time is 409.1000 us which is very small. 
+        ...
+    
+        MinIterationTime
+        {
+            It's recommended to increase it to at least 100.0000 ms using more operations
+        }
+    }
+
+    So?
+    {
+        I am satisfied (:
+        {
+            It is the time to do more operations
+        }
+    }
+}
+```
+```
+I checked the Net and found this page
+{
+    http://ai.stanford.edu/~chuongdo/boggle/ (Chuong (Tom) Do)
+    Says
+    {
+        S E R S
+        P A T G
+        L I N E
+        S E R S
+
+        124  3-letter words ( 124 points)
+        281  4-letter words ( 281 points)
+        363  5-letter words ( 726 points)
+        304  6-letter words ( 912 points)
+        213  7-letter words (1065 points)
+        097  8-letter words (1067 points)
+        028  9-letter words ( 308 points)
+        004 10-letter words (  44 points)
+
+        1414 total words
+        4527 total points
+
+        - - -
+
+        R S C L S
+        D E I A E
+        G N T R P
+        I A E S O
+        L M I D C
+
+        195  3-letter words ( 195 points)
+        442  4-letter words ( 442 points)
+        661  5-letter words (1322 points)
+        668  6-letter words (2004 points)
+        533  7-letter words (2665 points)
+        342  8-letter words (3762 points)
+        189  9-letter words (2079 points)
+        071 10-letter words ( 781 points)
+        018 11-letter words ( 198 points)
+        001 12-letter words (  11 points)
+
+        3120 total words
+        13459 total points
+
+        - - -
+
+        D S R O D G
+        T E M E N S
+        R A S I T O
+        D G N T R P
+        R E I A E S
+        T S C L P D
+
+        0232 03-letter words (0232 points)
+        0610 04-letter words (0610 points)
+        0907 05-letter words (1814 points)
+        1087 06-letter words (3261 points)
+        0980 07-letter words (4900 points)
+        0749 08-letter words (8239 points)
+        0429 09-letter words (4719 points)
+        0184 10-letter words (2024 points)
+        0047 11-letter words (0517 points)
+        0013 12-letter words (0143 points)
+        0005 13-letter words (0055 points)
+
+        26514 total points
+        5243 total words
+    }
+}
+```
+```
+TrieSolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Level = MaxWordLength
+    {
+        58@Maxi
+        {
+            LLANFAIRPWLLGWYNGYLLGOGERYCHWYRNDROBWLLLLANTYSILIOGOGOGOCH
+        }
+        45@Midi
+        {
+            PNEUMONOULTRAMICROSCOPICSILICOVOLCANOCONIOSIS
+        }
+        18@Mini
+        {
+            CHARACTERISTICALLY
+            ...
+        }
+    }
+
+    Boggle
+    {
+        [
+            [ "S", "E", "R", "S" ],
+            [ "P", "A", "T", "G" ],
+            [ "L", "I", "N", "E" ],
+            [ "S", "E", "R", "S" ]
+        ]
+    }
+}
+```
+| Method | Size |     Mean |     Error |    StdDev |
+|------- |----- |---------:|----------:|----------:|
+|   Trie | Maxi | 5.566 ms | 1.0236 ms | 0.6771 ms |
+|   Trie | Midi | 4.042 ms | 0.7819 ms | 0.5172 ms |
+|   Trie | Mini | 2.084 ms | 0.6342 ms | 0.4195 ms |
+```
+Result?
+{
+    Warnings (:
+    {
+        The minimum observed iteration time is 5.0015 ms which is very small (Maxi)  
+        The minimum observed iteration time is 3.5437 ms which is very small (Midi)
+        The minimum observed iteration time is 1.7848 ms which is very small (Mini)
+        ...
+    }
+
+    MinIterationTime
+    {
+        It's recommended to increase it to at least 100.0000 ms using more operations
+    }
+
+    So?
+    {
+        Next()
+    }
+}
+```
+```
+TrieSolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Level = MaxWordLength
+    {
+        58@Maxi
+        {
+            LLANFAIRPWLLGWYNGYLLGOGERYCHWYRNDROBWLLLLANTYSILIOGOGOGOCH
+        }
+        45@Midi
+        {
+            PNEUMONOULTRAMICROSCOPICSILICOVOLCANOCONIOSIS
+        }
+        18@Mini
+        {
+            CHARACTERISTICALLY
+            ...
+        }
+    }
+
+    Boggle
+    {
+        [
+            [ "R", "S", "C", "L", "S" ],
+            [ "D", "E", "I", "A", "E" ],
+            [ "G", "N", "T", "R", "P" ],
+            [ "I", "A", "E", "S", "O" ],
+            [ "L", "M", "I", "D", "C" ]
+        ]
+    }
+}
+```
+| Method | Size |      Mean |    Error |    StdDev |
+|------- |----- |----------:|---------:|----------:|
+|   Trie | Maxi | 19.299 ms | 5.829 ms | 3.8553 ms |
+|   Trie | Midi | 14.861 ms | 9.367 ms | 6.1958 ms |
+|   Trie | Mini |  5.909 ms | 1.137 ms | 0.7522 ms |
+```
+Result?
+{
+    Warnings (:
+    {
+        The minimum observed iteration time is 17.2487 ms which is very small (Maxi)  
+        The minimum observed iteration time is 11.7630 ms which is very small (Midi)
+        The minimum observed iteration time is  5.3904 ms which is very small (Mini)
+        ...
+    }
+
+    MinIterationTime
+    {
+        It's recommended to increase it to at least 100.0000 ms using more operations
+    }
+
+    So?
+    {
+        Next()
+    }
+}
+```
+```
+TrieSolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Level = MaxWordLength
+    {
+        58@Maxi
+        {
+            LLANFAIRPWLLGWYNGYLLGOGERYCHWYRNDROBWLLLLANTYSILIOGOGOGOCH
+        }
+        45@Midi
+        {
+            PNEUMONOULTRAMICROSCOPICSILICOVOLCANOCONIOSIS
+        }
+        18@Mini
+        {
+            CHARACTERISTICALLY
+            ...
+        }
+    }
+
+    Boggle
+    {
+        [
+            [ "D", "S", "R", "O", "D", "G" ],
+            [ "T", "E", "M", "E", "N", "S" ],
+            [ "R", "A", "S", "I", "T", "O" ],
+            [ "D", "G", "N", "T", "R", "P" ],
+            [ "R", "E", "I", "A", "E", "S" ],
+            [ "T", "S", "C", "L", "P", "D" ]
+        ]
+    }
+}
+```
+| Method | Size |     Mean |    Error |   StdDev |
+|------- |----- |---------:|---------:|---------:|
+|   Trie | Maxi | 37.95 ms | 3.194 ms | 2.113 ms |
+|   Trie | Midi | 25.57 ms | 2.577 ms | 1.704 ms |
+|   Trie | Mini | 11.96 ms | 1.932 ms | 1.278 ms |
+
+```
+Result?
+{
+    Warnings (:
+    {
+        The minimum observed iteration time is 37.1669 ms which is very small (@Maxi)
+        The minimum observed iteration time is 24.8757 ms which is very small (@Midi)
+        The minimum observed iteration time is 11.3260 ms which is very small (@Mini)
+        ...
+    }
+
+    MinIterationTime
+    {
+        It's recommended to increase it to at least 100.0000 ms using more operations
+    }
+
+    So?
+    {
+        Next()
+        {
+            But! 
+
+            So?
+            {
+                Change Benchmark Strategy
+            }
+        }
+    }
+}
+```
+```
+TrieSolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Level = MaxWordLength
+    {
+        58@Maxi
+        {
+            LLANFAIRPWLLGWYNGYLLGOGERYCHWYRNDROBWLLLLANTYSILIOGOGOGOCH
+        }
+        45@Midi
+        {
+            PNEUMONOULTRAMICROSCOPICSILICOVOLCANOCONIOSIS
+        }
+        18@Mini
+        {
+            CHARACTERISTICALLY
+            ...
+        }
+    }
+
+    Boggle
+    {
+        [
+            [ "D", "S", "R", "O", "D", "G" ],
+            [ "T", "E", "M", "E", "N", "S" ],
+            [ "R", "A", "S", "I", "T", "O" ],
+            [ "D", "G", "N", "T", "R", "P" ],
+            [ "R", "E", "I", "A", "E", "S" ],
+            [ "T", "S", "C", "L", "P", "D" ]
+        ]
+    }
+
+    Run Strategy
+    {
+        Throughput (Perfect for microbenchmarking)
+    }
+}
+```
+| Method | Size |     Mean |    Error |   StdDev |
+|------- |----- |---------:|---------:|---------:|
+|   Trie | Maxi | 37.23 ms | 0.169 ms | 0.141 ms |
+|   Trie | Midi | 25.11 ms | 0.162 ms | 0.144 ms |
+|   Trie | Mini | 11.55 ms | 0.028 ms | 0.025 ms |
+```
+Result?
+{
+    I am satisfied (:
+    But
+    I am not impressed (;
+
+    So?
+    {
+        It is the time to do micro optimizations
+    }
+}
+```
+
 [`Next()`](https://github.com/tafo/boggle-solver)
