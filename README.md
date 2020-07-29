@@ -1,3 +1,4 @@
+
 ## BOGGLE
 ```
 A game that is played using a grid of letters
@@ -775,3 +776,4 @@ Satisfied(?)
 }
 ```
 **LetterLake vs LetterSea**
+
