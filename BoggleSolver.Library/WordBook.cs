@@ -34,5 +34,6 @@ namespace BoggleSolver.Library
         public static int L2(this string word) => word[2];
         public static int L3(this string word) => word[3];
         public static int L4(this string word) => word[4];
+        public static int L5(this string word) => word[5];
     }
 }

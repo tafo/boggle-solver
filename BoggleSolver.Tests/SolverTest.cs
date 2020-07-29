@@ -20,12 +20,12 @@ namespace BoggleSolver.Tests
         }
 
         [Theory]
-        [InlineData(4, WordBook.Maxi)]
-        [InlineData(4, WordBook.Midi)]
-        [InlineData(4, WordBook.Mini)]
         [InlineData(5, WordBook.Maxi)]
         [InlineData(5, WordBook.Midi)]
         [InlineData(5, WordBook.Mini)]
+        [InlineData(6, WordBook.Maxi)]
+        [InlineData(6, WordBook.Midi)]
+        [InlineData(6, WordBook.Mini)]
         public void Check_Performance_MiniBoggle(int level, string dictionarySize)
         {
             var boggle = GetBoggle(MiniBoggle);
@@ -41,6 +41,7 @@ namespace BoggleSolver.Tests
 
         [Theory]
         [InlineData(5, WordBook.Test)]
+        [InlineData(6, WordBook.Test)]
         public void Check_Performance_MidiBoggle(int level, string dictionarySize)
         {
             var boggle = GetBoggle(MidiBoggle);
@@ -55,10 +56,11 @@ namespace BoggleSolver.Tests
         }
 
         [Theory]
-        [InlineData(4, TestBoggle)]
-        [InlineData(4, MiniBoggle)]
         [InlineData(5, TestBoggle)]
         [InlineData(5, MiniBoggle)]
+        [InlineData(6, TestBoggle)]
+        [InlineData(6, MiniBoggle)]
+        [InlineData(6, MidiBoggle)]
         public void Check_Result(int level, string boggleSize)
         {
             LetterTrie.Level = level;

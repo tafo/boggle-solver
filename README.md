@@ -294,7 +294,7 @@ Result?
 ```
 Satisfied(?)
 {
-    Yes => ???
+    Yes => ?
     No  => Next()
 }
 ```
@@ -354,12 +354,6 @@ Is there any word that starts with "GGG", "RRR", "WXQ", ... ?
 }
 ```
 IndexSolver = ?
-```
-Satisfied(?)
-{
-    Yes => ??
-    No  => Next()
-}
 ```
 ***
 **TrieSolver**
@@ -454,7 +448,7 @@ Result?
 ```
 Satisfied(?)
 {
-    Yes => ?
+    Yes => (:
     No  => Next()
 }
 ```
@@ -608,33 +602,25 @@ Result?
     Level3.ChainCounter@Mini =  2,841,041
     Level4.ChainCounter@Mini =    439,258
 
+    39,096 words vs 439,258 chains for Mini!
     So?
     {
-        ABCs  >>> Words.Every.Take(3).Unique();
-        ABCDs >>> Words.Every.Take(4).Unique();
-
-        There are 39,096 words in Mini dictionary
-        {
-            There are 439,258 different ABCDs in Mini dictionary
-
-            So?
-            {
-                ?
-            }
-        }        
+        Check Level5   
     }
 }
 ```
 ```
 Satisfied(?)
 {
-    Yes, I am satisfied
+    Yes
     {
-        But, not impressed!
+        Impressed(?)
         {
-            Next()
+            Yes => (:
+            No  => Next()
         }
     }
+
     No  => Next()
 }
 ```
@@ -684,15 +670,8 @@ Result?
     Level4.ChainCounter@Mini =    439,258
     Level5.ChainCounter@Mini =     24,725
 
-    ABCDs  >>> Words.Every.Take(4).Unique();
-    ABCDEs >>> Words.Every.Take(5).Unique();
+    39,096 words vs 24,725 chains for Mini!
 
-    There are 39,096 words in Mini dictionary
-    {
-        ABCDs => 439,258 
-        ABCDEs => 24,725
-    }        
-    
     AND!!!
 
     Warnings
@@ -705,20 +684,93 @@ Result?
 
     So?
     {
-        It is the time to use a 4x5 boggle
+        It is the time to use a 5x5 boggle
     }
 }
 ```
 ```
-Satisfied(?)
+TrieSolver Level5 vs Level6
 {
-    Yes!
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
     {
-        But, not impressed!
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Boggle
+    {
+        [
+            [ "U", "N", "T", "N", "O" ],
+            [ "N", "F", "A", "C", "O" ],
+            [ "R", "I", "V", "H", "H" ],
+            [ "E", "H", "Y", "E", "K" ],
+            [ "A", "E", "O", "S", "T" ]
+        ]
+    }
+}
+
+Level5.ChainCounter =>  6,991,853
+Level6.ChainCounter => 56,219,570
+And
+{
+    Level5 found 22 words in 00:00:05.9038080
+    Level6 found 22 words in 00:00:40.6983284
+}
+Why?
+{
+    Example =>
+    Solver chained "F","A","C" and "T"
+    {
+        FACT is a word?
         {
-            Next()
+            Yes
+            {
+                Continue
+                {
+                    But!
+                    {
+                        Is FACTN (FACT + "N") a word?
+                        {
+                            FACTNs?
+                            !!!
+                        }
+                    }
+                }
+            }
+            No
+            {
+                Stop!
+            }
         }
     }
+}
+So?
+{
+    Clearly!
+    ChainCounter should be equal to the number of words in the given boggle
+    {
+        56,219,570 vs 22 !!!
+        {
+            I can not be satisfied !!!
+        }
+    }
+}
+```
+Satisfied(?)
+{
+    Yes
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
+
     No  => Next()
 }
 ```

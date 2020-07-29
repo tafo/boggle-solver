@@ -36,6 +36,7 @@ namespace BoggleSolver.Library
             var chainSize = Math.Min(word.Length, Level);
             var trie = chainSize switch
             {
+                6 => this[word.L0()][word.L1()][word.L2()][word.L3()][word.L4()][word.L5()],
                 5 => this[word.L0()][word.L1()][word.L2()][word.L3()][word.L4()],
                 4 => this[word.L0()][word.L1()][word.L2()][word.L3()],
                 _ => this[word.L0()][word.L1()][word.L2()],
@@ -49,6 +50,7 @@ namespace BoggleSolver.Library
             var chainSize = Math.Min(chain.Length, Level);
             var trie = chainSize switch
             {
+                6 => this[chain[0]]?[chain[1]]?[chain[2]]?[chain[3]]?[chain[4]]?[chain[5]],
                 5 => this[chain[0]]?[chain[1]]?[chain[2]]?[chain[3]]?[chain[4]],
                 4 => this[chain[0]]?[chain[1]]?[chain[2]]?[chain[3]],
                 _ => this[chain[0]]?[chain[1]]?[chain[2]],
