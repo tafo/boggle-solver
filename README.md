@@ -857,13 +857,13 @@ I checked the Net and found this page
     Says
     {
         S E R S
-		P A T G
-		L I N E
-		S E R S
+        P A T G
+        L I N E
+        S E R S
 
-		124  3-letter words ( 124 points)
-		281  4-letter words ( 281 points)
-		363  5-letter words ( 726 points)
+        124  3-letter words ( 124 points)
+        281  4-letter words ( 281 points)
+        363  5-letter words ( 726 points)
 		304  6-letter words ( 912 points)
 		213  7-letter words (1065 points)
 		097  8-letter words (1067 points)
