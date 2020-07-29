@@ -864,59 +864,59 @@ I checked the Net and found this page
         124  3-letter words ( 124 points)
         281  4-letter words ( 281 points)
         363  5-letter words ( 726 points)
-		304  6-letter words ( 912 points)
-		213  7-letter words (1065 points)
-		097  8-letter words (1067 points)
-		028  9-letter words ( 308 points)
-		004 10-letter words (  44 points)
+        304  6-letter words ( 912 points)
+        213  7-letter words (1065 points)
+        097  8-letter words (1067 points)
+        028  9-letter words ( 308 points)
+        004 10-letter words (  44 points)
 
         1414 total words
-		4527 total points
+        4527 total points
 
         - - -
 
-		R S C L S
-		D E I A E
-		G N T R P
-		I A E S O
-		L M I D C
+        R S C L S
+        D E I A E
+        G N T R P
+        I A E S O
+        L M I D C
 
-		195  3-letter words ( 195 points)
-		442  4-letter words ( 442 points)
-		661  5-letter words (1322 points)
-		668  6-letter words (2004 points)
-		533  7-letter words (2665 points)
-		342  8-letter words (3762 points)
-		189  9-letter words (2079 points)
-		071 10-letter words ( 781 points)
-		018 11-letter words ( 198 points)
-		001 12-letter words (  11 points)
+        195  3-letter words ( 195 points)
+        442  4-letter words ( 442 points)
+        661  5-letter words (1322 points)
+        668  6-letter words (2004 points)
+        533  7-letter words (2665 points)
+        342  8-letter words (3762 points)
+        189  9-letter words (2079 points)
+        071 10-letter words ( 781 points)
+        018 11-letter words ( 198 points)
+        001 12-letter words (  11 points)
 
         3120 total words
-		13459 total points
+        13459 total points
 
         - - -
 
-		D S R O D G
-		T E M E N S
-		R A S I T O
-		D G N T R P
-		R E I A E S
-		T S C L P D
+        D S R O D G
+        T E M E N S
+        R A S I T O
+        D G N T R P
+        R E I A E S
+        T S C L P D
 
-		0232 03-letter words (0232 points)
-		0610 04-letter words (0610 points)
-		0907 05-letter words (1814 points)
-    	1087 06-letter words (3261 points)
-		0980 07-letter words (4900 points)
-		0749 08-letter words (8239 points)
-		0429 09-letter words (4719 points)
-		0184 10-letter words (2024 points)
-		0047 11-letter words (0517 points)
-		0013 12-letter words (0143 points)
-		0005 13-letter words (0055 points)
+        0232 03-letter words (0232 points)
+        0610 04-letter words (0610 points)
+        0907 05-letter words (1814 points)
+        1087 06-letter words (3261 points)
+        0980 07-letter words (4900 points)
+        0749 08-letter words (8239 points)
+        0429 09-letter words (4719 points)
+        0184 10-letter words (2024 points)
+        0047 11-letter words (0517 points)
+        0013 12-letter words (0143 points)
+        0005 13-letter words (0055 points)
 
-		26514 total points
+        26514 total points
         5243 total words
     }
 }
