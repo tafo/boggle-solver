@@ -964,17 +964,17 @@ TrieSolver
 ```
 | Method | Size |     Mean |     Error |    StdDev |
 |------- |----- |---------:|----------:|----------:|
-|   Trie | Maxi | 5.748 ms | 0.7789 ms | 0.5152 ms |
-|   Trie | Midi | 4.261 ms | 0.8254 ms | 0.5459 ms |
-|   Trie | Mini | 2.292 ms | 0.7698 ms | 0.5092 ms |
+|   Trie | Maxi | 5.566 ms | 1.0236 ms | 0.6771 ms |
+|   Trie | Midi | 4.042 ms | 0.7819 ms | 0.5172 ms |
+|   Trie | Mini | 2.084 ms | 0.6342 ms | 0.4195 ms |
 ```
 Result?
 {
     Warnings (:
     {
-        The minimum observed iteration time is 5.2102 ms which is very small (Maxi)  
-        The minimum observed iteration time is 3.7472 ms which is very small (Midi)
-        The minimum observed iteration time is 1.9470 ms which is very small (Mini)
+        The minimum observed iteration time is 5.0015 ms which is very small (Maxi)  
+        The minimum observed iteration time is 3.5437 ms which is very small (Midi)
+        The minimum observed iteration time is 1.7848 ms which is very small (Mini)
         ...
     }
 
@@ -1031,19 +1031,19 @@ TrieSolver
     }
 }
 ```
-| Method | Size |     Mean |     Error |    StdDev |
-|------- |----- |---------:|----------:|----------:|
-|   Trie | Maxi | 5.748 ms | 0.7789 ms | 0.5152 ms |
-|   Trie | Midi | 4.261 ms | 0.8254 ms | 0.5459 ms |
-|   Trie | Mini | 2.292 ms | 0.7698 ms | 0.5092 ms |
+| Method | Size |      Mean |    Error |    StdDev |
+|------- |----- |----------:|---------:|----------:|
+|   Trie | Maxi | 19.299 ms | 5.829 ms | 3.8553 ms |
+|   Trie | Midi | 14.861 ms | 9.367 ms | 6.1958 ms |
+|   Trie | Mini |  5.909 ms | 1.137 ms | 0.7522 ms |
 ```
 Result?
 {
     Warnings (:
     {
-        The minimum observed iteration time is 5.2102 ms which is very small (Maxi)  
-        The minimum observed iteration time is 3.7472 ms which is very small (Midi)
-        The minimum observed iteration time is 1.9470 ms which is very small (Mini)
+        The minimum observed iteration time is 17.2487 ms which is very small (Maxi)  
+        The minimum observed iteration time is 11.7630 ms which is very small (Midi)
+        The minimum observed iteration time is  5.3904 ms which is very small (Mini)
         ...
     }
 
@@ -1101,47 +1101,20 @@ TrieSolver
     }
 }
 ```
+| Method | Size |     Mean |    Error |   StdDev |
+|------- |----- |---------:|---------:|---------:|
+|   Trie | Maxi | 37.95 ms | 3.194 ms | 2.113 ms |
+|   Trie | Midi | 25.57 ms | 2.577 ms | 1.704 ms |
+|   Trie | Mini | 11.96 ms | 1.932 ms | 1.278 ms |
 
-| Method | Size |      Mean |    Error |    StdDev |
-|------- |----- |----------:|---------:|----------:|
-|   Trie | Maxi | 21.804 ms | 9.101 ms | 6.0194 ms |
-|   Trie | Midi | 13.594 ms | 1.765 ms | 1.1672 ms |
-|   Trie | Mini |  6.310 ms | 1.409 ms | 0.9320 ms |
 ```
 Result?
 {
     Warnings (:
     {
-        The minimum observed iteration time is 18.6351 ms which is very small
-        The minimum observed iteration time is 12.6544 ms which is very small
-        The minimum observed iteration time is 05.7523 ms which is very small
-        ...
-    }
-
-    MinIterationTime
-    {
-        It's recommended to increase it to at least 100.0000 ms using more operations
-    }
-
-    So?
-    {
-        Next()
-    }
-}
-```
-| Method | Size |     Mean |     Error |    StdDev |   Median |
-|------- |----- |---------:|----------:|----------:|---------:|
-|   Trie | Maxi | 38.35 ms |  4.108 ms |  2.717 ms | 37.40 ms |
-|   Trie | Midi | 31.81 ms | 17.493 ms | 11.571 ms | 28.11 ms |
-|   Trie | Mini | 14.31 ms |  9.161 ms |  6.060 ms | 11.39 ms |
-```
-Result?
-{
-    Warnings (:
-    {
-        The minimum observed iteration time is 36.8759 ms which is very small
-        The minimum observed iteration time is 24.4592 ms which is very small
-        The minimum observed iteration time is 11.2342 ms which is very small
+        The minimum observed iteration time is 37.1669 ms which is very small (@Maxi)
+        The minimum observed iteration time is 24.8757 ms which is very small (@Midi)
+        The minimum observed iteration time is 11.3260 ms which is very small (@Mini)
         ...
     }
 
@@ -1154,7 +1127,7 @@ Result?
     {
         Next()
         {
-            But!
+            But! 
 
             So?
             {
@@ -1164,11 +1137,58 @@ Result?
     }
 }
 ```
+TrieSolver
+{
+    Windows 10.0.18362.959 (1903/May2019Update/19H1)
+    Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
+
+    Dict
+    {
+        Maxi    = 281,279 Words
+        Midi    = 129,552 Words
+        Mini    =  39,096 Words    
+    }
+
+    Level = MaxWordLength
+    {
+        58@Maxi
+        {
+            LLANFAIRPWLLGWYNGYLLGOGERYCHWYRNDROBWLLLLANTYSILIOGOGOGOCH
+        }
+        45@Midi
+        {
+            PNEUMONOULTRAMICROSCOPICSILICOVOLCANOCONIOSIS
+        }
+        18@Mini
+        {
+            CHARACTERISTICALLY
+            ...
+        }
+    }
+
+    Boggle
+    {
+        [
+            [ "D", "S", "R", "O", "D", "G" ],
+            [ "T", "E", "M", "E", "N", "S" ],
+            [ "R", "A", "S", "I", "T", "O" ],
+            [ "D", "G", "N", "T", "R", "P" ],
+            [ "R", "E", "I", "A", "E", "S" ],
+            [ "T", "S", "C", "L", "P", "D" ]
+        ]
+    }
+
+    Run Strategy
+    {
+        Throughput (Perfect for microbenchmarking)
+    }
+}
+```
 | Method | Size |     Mean |    Error |   StdDev |
 |------- |----- |---------:|---------:|---------:|
-|   Trie | Maxi | 38.03 ms | 0.191 ms | 0.170 ms |
-|   Trie | Midi | 25.62 ms | 0.224 ms | 0.198 ms |
-|   Trie | Mini | 11.56 ms | 0.057 ms | 0.050 ms |
+|   Trie | Maxi | 37.23 ms | 0.169 ms | 0.141 ms |
+|   Trie | Midi | 25.11 ms | 0.162 ms | 0.144 ms |
+|   Trie | Mini | 11.55 ms | 0.028 ms | 0.025 ms |
 ```
 Result?
 {
@@ -1184,3 +1204,9 @@ Result?
 ```
 ***
 **Optimization**
+```
+DetailedCheck?
+{
+    Scan the code !!!
+}
+```
