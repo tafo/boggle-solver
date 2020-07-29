@@ -515,6 +515,10 @@ I checked the Net and found this page
         004 10-letter words (  44 points)
 
         1414 total words
+        But!
+        {
+            Found 1508 words @ Maxi
+        }
         4527 total points
 
         - - -
@@ -537,6 +541,10 @@ I checked the Net and found this page
         001 12-letter words (  11 points)
 
         3120 total words
+        But!
+        {
+            Found 3335 words @Maxi
+        }
         13459 total points
 
         - - -
@@ -560,8 +568,12 @@ I checked the Net and found this page
         0013 12-letter words (0143 points)
         0005 13-letter words (0055 points)
 
-        26514 total points
         5243 total words
+        But!
+        {
+            Found 5448 words @ Maxi        
+        }
+        26514 total points
     }
 }
 ```
