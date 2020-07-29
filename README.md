@@ -8,7 +8,7 @@ FindChainMethod  => DepthFirstSearch
 
 CheckChainMethod => ?
 {
-    I am open to any kind of requests
+    I am open to any kind of request
 }
 
 BinarySearchSolver vs HashSetSolver
