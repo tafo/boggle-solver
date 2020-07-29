@@ -20,10 +20,9 @@ namespace BoggleSolver.Tests
         }
 
         [Theory]
-        [InlineData(TestBoggle)]
-        [InlineData(MiniBoggle)]
         [InlineData(MidiBoggle)]
         [InlineData(MaxiBoggle)]
+        [InlineData(HugeBoggle)]
         public void Check_Performance(string boggleSize)
         {
             var boggle = GetBoggle(boggleSize);
@@ -33,15 +32,14 @@ namespace BoggleSolver.Tests
             timer.Stop();
 
             _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
-            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
+            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.ElapsedTicks}");
             _testOutput.WriteLine($"Score = {result.Score}");
         }
 
         [Theory]
-        [InlineData(TestBoggle)]
-        [InlineData(MiniBoggle)]
         [InlineData(MidiBoggle)]
         [InlineData(MaxiBoggle)]
+        [InlineData(HugeBoggle)]
         public void Check_Result(string boggleSize)
         {
             var solver = new Solver { RootTrie = WordBook.Test.GetTrie() };
@@ -63,6 +61,7 @@ namespace BoggleSolver.Tests
             MiniBoggle => _boggles[1],
             MidiBoggle => _boggles[2],
             MaxiBoggle => _boggles[3],
+            HugeBoggle => _boggles[4],
             _ => _boggles[0],
         };
 
@@ -80,5 +79,6 @@ namespace BoggleSolver.Tests
         private const string MiniBoggle = "Mini";
         private const string MidiBoggle = "Midi";
         private const string MaxiBoggle = "Maxi";
+        private const string HugeBoggle = "Huge";
     }
 }
