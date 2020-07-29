@@ -20,17 +20,14 @@ namespace BoggleSolver.Tests
         }
 
         [Theory]
-        [InlineData(5, WordBook.Maxi)]
-        [InlineData(5, WordBook.Midi)]
-        [InlineData(5, WordBook.Mini)]
-        [InlineData(6, WordBook.Maxi)]
-        [InlineData(6, WordBook.Midi)]
-        [InlineData(6, WordBook.Mini)]
-        public void Check_Performance_MiniBoggle(int level, string dictionarySize)
+        [InlineData(TestBoggle)]
+        [InlineData(MiniBoggle)]
+        [InlineData(MidiBoggle)]
+        [InlineData(MaxiBoggle)]
+        public void Check_Performance(string boggleSize)
         {
-            var boggle = GetBoggle(MiniBoggle);
-            LetterTrie.Level = level;
-            var solver = new Solver {RootTrie = dictionarySize.GetTrie()};
+            var boggle = GetBoggle(boggleSize);
+            var solver = new Solver { RootTrie = WordBook.Maxi.GetTrie() };
             var timer = Stopwatch.StartNew();
             var result = solver.Run(boggle);
             timer.Stop();
@@ -40,31 +37,13 @@ namespace BoggleSolver.Tests
         }
 
         [Theory]
-        [InlineData(5, WordBook.Test)]
-        [InlineData(6, WordBook.Test)]
-        public void Check_Performance_MidiBoggle(int level, string dictionarySize)
+        [InlineData(TestBoggle)]
+        [InlineData(MiniBoggle)]
+        [InlineData(MidiBoggle)]
+        [InlineData(MaxiBoggle)]
+        public void Check_Result(string boggleSize)
         {
-            var boggle = GetBoggle(MidiBoggle);
-            LetterTrie.Level = level;
-            var solver = new Solver {RootTrie = dictionarySize.GetTrie()};
-            var timer = Stopwatch.StartNew();
-            var result = solver.Run(boggle);
-            timer.Stop();
-
-            _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
-            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.Elapsed}");
-        }
-
-        [Theory]
-        [InlineData(5, TestBoggle)]
-        [InlineData(5, MiniBoggle)]
-        [InlineData(6, TestBoggle)]
-        [InlineData(6, MiniBoggle)]
-        [InlineData(6, MidiBoggle)]
-        public void Check_Result(int level, string boggleSize)
-        {
-            LetterTrie.Level = level;
-            var solver = new Solver {RootTrie = WordBook.Test.GetTrie()};
+            var solver = new Solver { RootTrie = WordBook.Test.GetTrie() };
             var boggle = GetBoggle(boggleSize);
             var timer = Stopwatch.StartNew();
             var result = solver.Run(boggle);
@@ -77,14 +56,14 @@ namespace BoggleSolver.Tests
             result.Score.Should().Be(boggle.Score);
         }
 
-        private static BoggleModel GetBoggle(string size) =>
-            size switch
-            {
-                TestBoggle => _boggles[0],
-                MiniBoggle => _boggles[1],
-                MidiBoggle => _boggles[2],
-                _ => _boggles[0],
-            };
+        private static BoggleModel GetBoggle(string size) => size switch
+        {
+            TestBoggle => _boggles[0],
+            MiniBoggle => _boggles[1],
+            MidiBoggle => _boggles[2],
+            MaxiBoggle => _boggles[3],
+            _ => _boggles[0],
+        };
 
         private static BoggleModel[] _boggles;
 

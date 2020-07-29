@@ -5,7 +5,6 @@ namespace BoggleSolver.Library
 {
     public static class WordBook
     {
-        public const string Abcd = "Abcd";
         public const string Test = "Test";
         public const string Mini = "Mini";
         public const string Midi = "Midi";
@@ -28,12 +27,5 @@ namespace BoggleSolver.Library
             Array.ForEach(words, word => { root.Set(word); });
             return root;
         }
-
-        public static int L0(this string word) => word[0];
-        public static int L1(this string word) => word[1];
-        public static int L2(this string word) => word[2];
-        public static int L3(this string word) => word[3];
-        public static int L4(this string word) => word[4];
-        public static int L5(this string word) => word[5];
     }
 }

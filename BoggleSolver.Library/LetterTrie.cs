@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace BoggleSolver.Library
 {
     public class LetterTrie
     {
-        public static int Level = 3;
-        public int LetterCode { get; set; }
-        public List<LetterTrie> Letters { get; set; }
-        public HashSet<string> Words { get; set; }
+        public bool IsLastLetter;
+        public int LetterCode;
+        public List<LetterTrie> Letters;
 
         public LetterTrie(int letterCode = -1)
         {
             LetterCode = letterCode;
             Letters = new List<LetterTrie>();
-            Words = new HashSet<string>();
         }
 
         private LetterTrie this[int i]
@@ -33,31 +30,27 @@ namespace BoggleSolver.Library
 
         public void Set(string word)
         {
-            var chainSize = Math.Min(word.Length, Level);
-            var trie = chainSize switch
+            var i = 0;
+            var trie = this;
+            do
             {
-                6 => this[word.L0()][word.L1()][word.L2()][word.L3()][word.L4()][word.L5()],
-                5 => this[word.L0()][word.L1()][word.L2()][word.L3()][word.L4()],
-                4 => this[word.L0()][word.L1()][word.L2()][word.L3()],
-                _ => this[word.L0()][word.L1()][word.L2()],
-            };
+                trie = trie[(int)word[i++]];
+            } while (i < word.Length);
 
-            trie.Words.Add(word);
+            trie.IsLastLetter = true;
         }
 
         public int Check(string chain)
         {
-            var chainSize = Math.Min(chain.Length, Level);
-            var trie = chainSize switch
+            var i = 0;
+            var trie = this;
+            do
             {
-                6 => this[chain[0]]?[chain[1]]?[chain[2]]?[chain[3]]?[chain[4]]?[chain[5]],
-                5 => this[chain[0]]?[chain[1]]?[chain[2]]?[chain[3]]?[chain[4]],
-                4 => this[chain[0]]?[chain[1]]?[chain[2]]?[chain[3]],
-                _ => this[chain[0]]?[chain[1]]?[chain[2]],
-            };
+                trie = trie[chain[i++]];
+            } while (trie != null && i < chain.Length);
 
             if (trie == null) return -1;
-            return trie.Words.Contains(chain) ? 1 : 0;
+            return trie.IsLastLetter ? 1 : 0;
         }
     }
 }
