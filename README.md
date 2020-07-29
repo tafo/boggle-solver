@@ -60,7 +60,7 @@ FindChainMethod  => DepthFirstSearch
 
 CheckChainMethod => Scanning
 ```
-[`Source Code`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
+[`Check Code`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
 ```
 Not optimized
 {
@@ -305,11 +305,8 @@ How do we search a subject(word) in a book?
 How do we search on the NET?
 How do we search ...?
 ```
-[Index@Wikipedia](https://en.wikipedia.org/wiki/Index)
-
-[SubjectIndexing@Wikipedia](https://en.wikipedia.org/wiki/Subject_indexing)
 ```
-Content(Subject Indexing)
+Content(Subject Indexing) @ Wiki
 {
     Subject indexing is the act of describing or classifying a document by index terms or other symbols 
     in order to 
@@ -354,13 +351,13 @@ Is there any word that starts with "GGG", "RRR", "WXQ", ... ?
     }
 }
 ```
-IndexSolver = ?
+???
 ***
 **TrieSolver**
 ```
 2 (x + y) = ?
 ```
-[Trie@Wikipedia](https://en.wikipedia.org/wiki/Trie)
+[`SourceCode`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
 ```
 Trie?
 {
