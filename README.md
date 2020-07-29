@@ -416,4 +416,4 @@ Satisfied(?)
     No  => Next()
 }
 ```
-[`Next()`](https://github.com/tafo/BoggleSolver/tree/BoggleSolver)
+[`Next()`](https://github.com/tafo/boggle-solver)
