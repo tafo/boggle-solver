@@ -354,12 +354,12 @@ TrieSolver Level5 vs Level6
     }
 }
 
-Level5.ChainCounter =>  6,991,853
-Level6.ChainCounter => 56,219,570
+Level6.ChainCounter =>  6,991,853
+Level5.ChainCounter => 56,219,570
 And
 {
-    Level5 found 22 words in 00:00:05.9038080
-    Level6 found 22 words in 00:00:40.6983284
+    Level6 found 22 words in 00:00:05.9038080
+    Level5 found 22 words in 00:00:40.6983284
 }
 Why?
 {
