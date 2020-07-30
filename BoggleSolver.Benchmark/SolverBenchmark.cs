@@ -12,29 +12,54 @@ namespace BoggleSolver.Benchmark
     public class SolverBenchmark
     {
         [Params(WordBook.Mini, WordBook.Midi, WordBook.Maxi)]
-        public string Size;
+        public string DictionarySize;
 
-        private BoggleModel _boggle;
+        [Params(MiniBoggle, MidiBoggle, MaxiBoggle)]
+        public string BoggleSize;
 
-        private Dictionary<string, LetterTrie> _tries;
+        private Dictionary<string, Boggle> _boggleList;
+        private Dictionary<string, LetterTrie> _letterTrieList;
 
         [GlobalSetup]
         public void GlobalSetup()
         {
-            var json = File.ReadAllText($"{Directory.GetCurrentDirectory()}/Boggle.json");
-            _boggle = JsonConvert.DeserializeObject<BoggleModel>(json);
-            _tries = new Dictionary<string, LetterTrie>
+            _letterTrieList = new Dictionary<string, LetterTrie>
             {
-                {WordBook.Mini, WordBook.Mini.GetTrie()},
-                {WordBook.Midi, WordBook.Midi.GetTrie()},
-                {WordBook.Maxi, WordBook.Maxi.GetTrie()}
+                {WordBook.Mini, WordBook.Mini.GetLetterTrie()},
+                {WordBook.Midi, WordBook.Midi.GetLetterTrie()},
+                {WordBook.Maxi, WordBook.Maxi.GetLetterTrie()}
+            };
+
+            var json = File.ReadAllText($"{Directory.GetCurrentDirectory()}/Boggles.json");
+            var boggles = JsonConvert.DeserializeObject<Boggle[]>(json);
+            _boggleList = new Dictionary<string, Boggle>
+            {
+                {MiniBoggle, boggles[0]},
+                {MidiBoggle, boggles[1]},
+                {MaxiBoggle, boggles[2]},
             };
         }
 
+        private const string MiniBoggle = "Mini";
+        private const string MidiBoggle = "Midi";
+        private const string MaxiBoggle = "Maxi";
+
         [Benchmark]
-        public void Trie()
+        public void TrieSolver()
         {
-            new Solver {RootTrie = _tries[Size]}.Run(_boggle);
+            new TrieSolver
+            {
+                RootTrie = _letterTrieList[DictionarySize]
+            }.Run(_boggleList[BoggleSize]);
+        }
+
+        [Benchmark]
+        public void CellSolver()
+        {
+            new CellSolver
+            {
+                RootTrie = WordBook.Test.GetLetterTrie()
+            }.Run(_boggleList[BoggleSize]);
         }
     }
 }

@@ -10,7 +10,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="boggle.json">
+        <None Update="Boggles.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>
     </ItemGroup>

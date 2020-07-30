@@ -20,7 +20,7 @@ namespace BoggleSolver.Library
             return File.ReadAllLines(size.Path());
         }
 
-        public static LetterTrie GetTrie(this string size)
+        public static LetterTrie GetLetterTrie(this string size)
         {
             var root = new LetterTrie();
             var words = size.GetWords();

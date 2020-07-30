@@ -4,9 +4,9 @@ namespace BoggleSolver.Library
 {
     public class LetterTrie
     {
-        public bool IsLastLetter;
-        public int LetterCode;
-        public List<LetterTrie> Letters;
+        public bool IsLastLetter { get; set; }
+        public int LetterCode { get; set; }
+        public List<LetterTrie> Letters { get; set; }
 
         public LetterTrie(int letterCode = -1)
         {

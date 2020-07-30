@@ -2,13 +2,12 @@
 
 namespace BoggleSolver.Library
 {
-    public class Solver
+    public class TrieSolver
     {
         public LetterTrie RootTrie { get; set; }
-
         public int ChainCounter { get; set; }
 
-        public ResultModel Run(BoggleModel boggle)
+        public ResultModel Run(Boggle boggle)
         {
             var result = new ResultModel();
 
