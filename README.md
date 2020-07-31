@@ -860,4 +860,4 @@ Result?
 }
 ```
 
-[`Next()`](https://github.com/tafo/boggle-solver)
+[`Next()`](https://github.com/tafo/BoggleSolver/tree/CellSolver)
