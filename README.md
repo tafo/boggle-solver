@@ -102,5 +102,52 @@ Result?
 }
 ```
 ```
-?
+Checked
+{
+    MapCells().Cost
+    {
+        A few ticks
+    }
+}
+
+A Micro Improvement
+{
+    Delete BoggleCell.AvailableAdjacentCells, BoggleCell.RowIndex, BoggleCell.ColIndex
+    
+    Refactor LetterTrie
+
+    ...
+}
 ```
+|     Method | DictionarySize |      Mean |    Error |   StdDev |
+|----------- |--------------- |----------:|---------:|---------:|
+| TrieSolver |           Maxi | 116.76 ms | 1.121 ms | 1.049 ms |
+| CellSolver |           Maxi | 115.63 ms | 1.767 ms | 1.476 ms |
+| TrieSolver |           Midi |  76.69 ms | 0.639 ms | 0.598 ms |
+| CellSolver |           Midi |  78.58 ms | 0.258 ms | 0.229 ms |
+| TrieSolver |           Mini |  35.15 ms | 0.238 ms | 0.223 ms |
+| CellSolver |           Mini |  35.74 ms | 0.293 ms | 0.260 ms |
+```
+Result?
+{
+    Because of CellSolver is a more elegant solution, 
+    {
+        Retire TrieSolver
+    }
+}
+```
+```
+Satisfied(?)
+{
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
+    No  => Next()
+}
+```
+[`Next()`](https://github.com/tafo/boggle-solver)

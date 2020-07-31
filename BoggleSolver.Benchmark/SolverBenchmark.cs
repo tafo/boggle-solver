@@ -9,14 +9,13 @@ using Newtonsoft.Json;
 
 namespace BoggleSolver.Benchmark
 {
-    [SimpleJob(RunStrategy.Monitoring, RuntimeMoniker.NetCoreApp31)]
+    [SimpleJob(RunStrategy.Throughput, RuntimeMoniker.NetCoreApp31)]
     public class SolverBenchmark
     {
-        public Boggle[] Boggles;
-
         [Params(WordBook.Mini, WordBook.Midi, WordBook.Maxi)]
         public string DictionarySize;
         public Dictionary<string, LetterTrie> LetterTrieList;
+        public Boggle[] Boggles;
 
         [GlobalSetup]
         public void GlobalSetup()

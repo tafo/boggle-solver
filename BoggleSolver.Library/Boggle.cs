@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace BoggleSolver.Library
 {
@@ -14,7 +13,7 @@ namespace BoggleSolver.Library
         public int Count { get; set; }
         public int Score { get; set; }
 
-        public List<BoggleCell> Cells { get; set; }
+        public BoggleCell[][] CellGrid { get; set; }
 
         public override string ToString()
         {
@@ -23,12 +22,20 @@ namespace BoggleSolver.Library
 
         public void MapCells()
         {
-            Cells = new List<BoggleCell>(Size);
+            CellGrid = new BoggleCell[RowSize][];
+            for (var i = 0; i < RowSize; i++)
+            {
+                CellGrid[i] = new BoggleCell[ColSize];
+                for (var j = 0; j < ColSize; j++)
+                {
+                    CellGrid[i][j] = new BoggleCell(Grid[i][j]);
+                }
+            }
+
             for (var i = 0; i < RowSize; i++)
             {
                 for (var j = 0; j < ColSize; j++)
                 {
-                    var cell = GetCell(i, j);
                     var rowMin = Math.Max(0, i - 1);
                     var colMin = Math.Max(0, j - 1);
 
@@ -40,21 +47,10 @@ namespace BoggleSolver.Library
                         for (var y = colMin; y <= colMax; y++)
                         {
                             if (x == i && y == j) continue;
-                            var adjacentCell = GetCell(x, y);
-                            cell.AdjacentCells.Add(adjacentCell);
+                            CellGrid[i][j].AdjacentCells.Add(CellGrid[x][y]);
                         }
                     }
                 }
-            }
-
-            BoggleCell GetCell(int i, int j)
-            {
-                var key = i * 10 + j;
-                var cell = Cells.Find(x => x.Key == key);
-                if (cell != null) return cell;
-                cell = new BoggleCell(i, j, Grid[i][j]);
-                Cells.Add(cell);
-                return cell;
             }
         }
     }

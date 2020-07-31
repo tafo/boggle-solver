@@ -6,10 +6,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <Compile Remove="TestData.cs" />
-    </ItemGroup>
-
-    <ItemGroup>
         <None Update="Boggles.json">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </None>

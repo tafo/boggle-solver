@@ -1,11 +1,17 @@
 ﻿using System;
+using BoggleSolver.Library;
 
-namespace BoggleSolver.Library
+namespace BoggleSolver.Benchmark.Shadow
 {
-    public class TrieSolver
+    public class TrieSolverShadow
     {
-        public LetterTrie RootTrie { get; set; }
+        private readonly int _maxWordLength;
         public int ChainCounter { get; set; }
+
+        public TrieSolverShadow(int maxWordLength)
+        {
+            _maxWordLength = maxWordLength;
+        }
 
         public ResultModel Run(Boggle boggle)
         {
@@ -53,20 +59,7 @@ namespace BoggleSolver.Library
             bool CheckChain(string chain)
             {
                 ChainCounter++;
-
-                if (chain.Length < 3) return true;
-
-                if (chain.Length > boggle.Size) return false;
-
-                var trie = RootTrie;
-                foreach (var letter in chain)
-                {
-                    trie = trie[letter];
-                    if (trie == null) return false;
-                }
-
-                if (trie.IsLastLetter) result.Words.Add(chain);
-                return true;
+                return chain.Length <= _maxWordLength;
             }
         }
 
