@@ -46,9 +46,15 @@ Result?
 ```
 Satisfied(?)
 {
-    Yes => !!
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
     No  => Next()
 }
-
 ```
 [`Next()`](https://github.com/tafo/BoggleSolver/tree/HashSetSolver)
