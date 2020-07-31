@@ -1298,9 +1298,7 @@ Simply!
     }
 }
 ```
-```
 [`Version-CellSolver`](https://github.com/tafo/BoggleSolver/tree/CellSolver)
-```
 ```
 TrieSolver vs CellSolver
 {
