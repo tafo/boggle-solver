@@ -1,43 +1,38 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace BoggleSolver.Library
 {
     public class LetterTrie
     {
         public bool IsLastLetter { get; set; }
-        public int LetterCode { get; set; }
+        public char Letter { get; set; }
         public List<LetterTrie> Letters { get; set; }
 
-        public LetterTrie(int letterCode = -1)
+        public LetterTrie(char letter = '?')
         {
-            LetterCode = letterCode;
+            Letter = letter;
             Letters = new List<LetterTrie>();
         }
 
-        private LetterTrie this[int i]
-        {
-            get
-            {
-                var trie = Letters.Find(x => x.LetterCode == i);
-                if (trie != null) return trie;
-                trie = new LetterTrie(i);
-                Letters.Add(trie);
-                return trie;
-            }
-        }
-
-        private LetterTrie this[char c] => Letters.Find(x => x.LetterCode == c);
+        public LetterTrie this[char letter] => Letters.Find(x => x.Letter == letter);
 
         public void Set(string word)
         {
-            var i = 0;
-            var trie = this;
-            do
-            {
-                trie = trie[(int)word[i++]];
-            } while (i < word.Length);
+            var lastTrie = word.Aggregate(this, (trie, letter) => trie.Set(letter));
+            lastTrie.IsLastLetter = true;
+        }
 
-            trie.IsLastLetter = true;
+        private LetterTrie Set(char letter)
+        {
+            return this[letter] ?? Create(letter);
+        }
+
+        private LetterTrie Create(char letter)
+        {
+            var trie = new LetterTrie(letter);
+            Letters.Add(trie);
+            return trie;
         }
 
         public int Check(string chain)

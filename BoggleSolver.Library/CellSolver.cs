@@ -10,7 +10,7 @@
             var output = new ResultModel();
 
             boggle.MapCells();
-
+            
             foreach (var cell in boggle.Cells)
             {
                 Chain(cell, string.Empty);
@@ -60,6 +60,6 @@
             }
         }
 
-        public override string ToString() => "Solver";
+        public override string ToString() => "Cell Solver";
     }
 }

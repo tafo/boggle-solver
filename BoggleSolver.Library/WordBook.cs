@@ -10,21 +10,20 @@ namespace BoggleSolver.Library
         public const string Midi = "Midi";
         public const string Maxi = "Maxi";
 
-        public static string Path(this string size)
+        public static string Path(this string dictionary)
         {
-            return $"{Directory.GetCurrentDirectory()}/Dictionary/{size}.txt";
+            return $"{Directory.GetCurrentDirectory()}/Dictionary/{dictionary}.txt";
         }
 
-        public static string[] GetWords(this string size)
+        public static string[] GetWords(this string dictionary)
         {
-            return File.ReadAllLines(size.Path());
+            return File.ReadAllLines(dictionary.Path());
         }
 
-        public static LetterTrie GetLetterTrie(this string size)
+        public static LetterTrie GetLetterTrie(this string dictionary)
         {
             var root = new LetterTrie();
-            var words = size.GetWords();
-            Array.ForEach(words, word => { root.Set(word); });
+            Array.ForEach(dictionary.GetWords(), word => root.Set(word));
             return root;
         }
     }
