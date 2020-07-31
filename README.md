@@ -27,7 +27,6 @@ Simply!
     }
 }
 ```
-[CellSolver](https://github.com/tafo/boggle-solver/tree/CellSolver)
 ```
 TrieSolver vs CellSolver
 {
