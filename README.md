@@ -90,7 +90,14 @@ Result?
 Satisfied(?)
 {
     Yes => (:
-    No  => Next()
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => continue
+        }
+    }
+    No  => continue
 }
 ```
 **Math**
@@ -183,7 +190,14 @@ Result?
 Satisfied(?)
 {
     Yes => (:
-    No  => Next()
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => continue
+        }
+    }
+    No  => continue
 }
 ```
 ***
@@ -253,16 +267,15 @@ Result?
 ```
 Satisfied(?)
 {
-    Yes
+    Yes => (:
     {
         Impressed(?)
         {
             Yes => (:
-            No  => Next()
+            No  => continue
         }
     }
-
-    No  => Next()
+    No  => continue
 }
 ```
 ***
@@ -404,16 +417,15 @@ Result?
 ```
 Satisfied(?)
 {
-    Yes
+    Yes => (:
     {
         Impressed(?)
         {
             Yes => (:
-            No  => Next()
+            No  => continue
         }
     }
-
-    No  => Next()
+    No  => continue
 }
 ```
 **LetterLake vs LetterSea**
@@ -641,7 +653,7 @@ Result?
 
     So?
     {
-        Next()
+        continue
     }
 }
 ```
@@ -710,7 +722,7 @@ Result?
 
     So?
     {
-        Next()
+        continue
     }
 }
 ```
@@ -781,15 +793,7 @@ Result?
 
     So?
     {
-        Next()
-        {
-            But! 
-
-            So?
-            {
-                Change Benchmark Strategy
-            }
-        }
+        continue
     }
 }
 ```
@@ -849,15 +853,21 @@ TrieSolver
 ```
 Result?
 {
-    I am satisfied (:
-    But
-    I am not impressed (;
-
-    So?
-    {
-        It is the time to do micro optimizations
-    }
+    It is the time to do micro optimizations
 }
 ```
-
+```
+Satisfied(?)
+{
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
+    No  => Next()
+}
+```
 [`Next()`](https://github.com/tafo/BoggleSolver/tree/CellSolver)
