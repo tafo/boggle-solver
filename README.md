@@ -16,7 +16,14 @@ Called SlowSolver
 ```
 Satisfied(?)
 {
-    Yes => !!!
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
     No  => Next()
 }
 ```
