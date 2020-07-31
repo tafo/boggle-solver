@@ -101,6 +101,4 @@ Result?
     }
 }
 ```
-```
-?
-```
+[`Next()`](https://github.com/tafo/boggle-solver)
