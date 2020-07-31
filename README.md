@@ -41,11 +41,17 @@ Result?
     A fine performance improvement !!
 }
 ```
-
 ```
 Satisfied(?)
 {
-    Yes => ???
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
     No  => Next()
 }
 ```
