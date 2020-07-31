@@ -77,6 +77,6 @@ namespace BoggleSolver.Library
             }
         }
 
-        public override string ToString() => "Trie";
+        public override string ToString() => "Trie Solver";
     }
 }

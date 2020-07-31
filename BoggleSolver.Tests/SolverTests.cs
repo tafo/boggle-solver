@@ -1,113 +1,113 @@
-﻿using System.Diagnostics;
-using System.IO;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using BoggleSolver.Library;
 using FluentAssertions;
-using Newtonsoft.Json;
 using Xunit;
 using Xunit.Abstractions;
 
 namespace BoggleSolver.Tests
 {
-    public class SolverTests
+    public class SolverTests : IClassFixture<TestData>
     {
         private readonly ITestOutputHelper _testOutput;
-        private readonly Boggle[] _boggles;
+        private readonly TestData _testData;
 
-        public SolverTests(ITestOutputHelper testOutput)
+        public SolverTests(ITestOutputHelper testOutput, TestData testData)
         {
             _testOutput = testOutput;
-            var json = File.ReadAllText($"{Directory.GetCurrentDirectory()}/Boggles.json");
-            _boggles = JsonConvert.DeserializeObject<Boggle[]>(json);
+            _testData = testData;
         }
 
-        [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        public void Test_TrieSolver(int boggleSize)
+        [Fact]
+        public void Test_TrieSolver()
         {
-            var boggle = _boggles[boggleSize];
             var solver = new TrieSolver
             {
                 RootTrie = WordBook.Maxi.GetLetterTrie()
             };
             var timer = Stopwatch.StartNew();
-            var result = solver.Run(boggle);
+            var results = _testData.Boggles.ToDictionary(boggle => boggle,
+                boggle => solver.Run(boggle).SetChainCounter(solver.ChainCounter));
             timer.Stop();
 
-            _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
-            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.ElapsedTicks}");
-            _testOutput.WriteLine($"Score = {result.Score}");
+            _testOutput.WriteLine($"Duration = {timer.ElapsedTicks}");
+            _testOutput.WriteLine(Environment.NewLine);
+            foreach (var (boggle, result) in results)
+            {
+                _testOutput.WriteLine($"{boggle}");
+                _testOutput.WriteLine($"Checked {result.ChainCounter} chains");
+            }
         }
 
-
-        [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        public void Test_CellSolver(int boggleSize)
+        [Fact]
+        public void Test_CellSolver()
         {
-            var boggle = _boggles[boggleSize];
             var solver = new CellSolver
             {
                 RootTrie = WordBook.Maxi.GetLetterTrie()
             };
+
             var timer = Stopwatch.StartNew();
-            var result = solver.Run(boggle);
+            var results = _testData.Boggles.ToDictionary(boggle => boggle,
+                boggle => solver.Run(boggle).SetChainCounter(solver.ChainCounter));
             timer.Stop();
 
-            _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
-            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.ElapsedTicks}");
-            _testOutput.WriteLine($"Score = {result.Score}");
+            _testOutput.WriteLine($"Duration = {timer.ElapsedTicks}");
+            _testOutput.WriteLine(Environment.NewLine);
+            foreach (var (boggle, result) in results)
+            {
+                _testOutput.WriteLine($"{boggle}");
+                _testOutput.WriteLine($"Checked {result.ChainCounter} chains");
+            }
         }
 
-        [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        public void Check_TrieSolver(int boggleSize)
+        [Fact]
+        public void Check_TrieSolver()
         {
-            var boggle = _boggles[boggleSize];
             var solver = new TrieSolver
             {
                 RootTrie = WordBook.Test.GetLetterTrie()
             };
             var timer = Stopwatch.StartNew();
-            var result = solver.Run(boggle);
+            var results = _testData.Boggles.ToDictionary(boggle => boggle,
+                boggle => solver.Run(boggle).SetChainCounter(solver.ChainCounter));
             timer.Stop();
 
-            _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
-            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.ElapsedTicks}");
-            result.Words.ToList().ForEach(x => _testOutput.WriteLine(x));
-            result.Words.Count.Should().Be(boggle.Count);
-            result.Score.Should().Be(boggle.Score);
+            _testOutput.WriteLine($"Duration = {timer.ElapsedTicks}");
+            _testOutput.WriteLine(Environment.NewLine);
+            foreach (var (boggle, result) in results)
+            {
+                _testOutput.WriteLine($"{boggle}");
+                _testOutput.WriteLine($"Checked {result.ChainCounter} chains");
+                _testOutput.WriteLine($"Score = {result.Score}");
+                result.Words.Count.Should().Be(boggle.Count);
+                result.Score.Should().Be(boggle.Score);
+            }
         }
 
-        [Theory]
-        [InlineData(0)]
-        [InlineData(1)]
-        [InlineData(2)]
-        [InlineData(3)]
-        public void Check_CellSolver(int boggleSize)
+        [Fact]
+        public void Check_CellSolver()
         {
-            var boggle = _boggles[boggleSize];
             var solver = new CellSolver
             {
                 RootTrie = WordBook.Test.GetLetterTrie()
             };
             var timer = Stopwatch.StartNew();
-            var result = solver.Run(boggle);
+            var results = _testData.Boggles.ToDictionary(boggle => boggle,
+                boggle => solver.Run(boggle).SetChainCounter(solver.ChainCounter));
             timer.Stop();
 
-            _testOutput.WriteLine($"Checked {solver.ChainCounter} chains");
-            _testOutput.WriteLine($"Found {result.Words.Count} words in {timer.ElapsedTicks}");
-            result.Words.ToList().ForEach(x => _testOutput.WriteLine(x));
-            result.Words.Count.Should().Be(boggle.Count);
-            result.Score.Should().Be(boggle.Score);
+            _testOutput.WriteLine($"Duration = {timer.ElapsedTicks}");
+            _testOutput.WriteLine(Environment.NewLine);
+            foreach (var (boggle, result) in results)
+            {
+                _testOutput.WriteLine($"{boggle}");
+                _testOutput.WriteLine($"Checked {result.ChainCounter} chains");
+                _testOutput.WriteLine($"Score = {result.Score}");
+                result.Words.Count.Should().Be(boggle.Count);
+                result.Score.Should().Be(boggle.Score);
+            }
         }
     }
 }

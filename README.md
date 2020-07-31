@@ -60,7 +60,7 @@ FindChainMethod  => DepthFirstSearch
 
 CheckChainMethod => Scanning
 ```
-[`Check Code`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
+[`Version-SlowSolver`](https://github.com/tafo/BoggleSolver/tree/SlowSolver)
 ```
 Not optimized
 {
@@ -75,7 +75,14 @@ Called SlowSolver
 ```
 Satisfied(?)
 {
-    Yes => !!!
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
     No  => Next()
 }
 ```
@@ -89,7 +96,7 @@ CheckChainMethod => Binary Search
     Dictionaries are already sorted!
 }
 ```
-[`Source Code`](https://github.com/tafo/BoggleSolver/tree/BinarySolver)
+[`Version-BinarySolver`](https://github.com/tafo/BoggleSolver/tree/BinarySolver)
 ```
 SlowSolver vs BinarySolver
 {
@@ -131,7 +138,14 @@ Result?
 ```
 Satisfied(?)
 {
-    Yes => !!
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
     No  => Next()
 }
 ```
@@ -150,7 +164,7 @@ CheckChainMethod => ?
     I am open to any kind of requests
 }
 ```
-[`Source Code`](https://github.com/tafo/BoggleSolver/tree/HashSetSolver)
+[`Version-HashSetSolver`](https://github.com/tafo/BoggleSolver/tree/HashSetSolver)
 ```
 BinarySearchSolver vs HashSetSolver
 {
@@ -240,7 +254,14 @@ Result?
 ```
 Satisfied(?)
 {
-    Yes => !
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
     No  => Next()
 }
 ```
@@ -252,7 +273,7 @@ Why dictionaries have another section for each letter?
     Every word is mapped to its first letter
 }
 ```
-[`DictionarySolver`](https://github.com/tafo/BoggleSolver/tree/DictionarySolver)
+[`Version-DictionarySolver`](https://github.com/tafo/BoggleSolver/tree/DictionarySolver)
 ```
 HashSetSolver vs DictionarySolver
 {
@@ -291,11 +312,17 @@ Result?
     A fine performance improvement !!
 }
 ```
-
 ```
 Satisfied(?)
 {
-    Yes => ?
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
     No  => Next()
 }
 ```
@@ -351,13 +378,13 @@ Is there any word that starts with "GGG", "RRR", "WXQ", ... ?
     }
 }
 ```
-???
+Index Solver => ???
 ***
 **TrieSolver**
 ```
 2 (x + y) = ?
 ```
-[`SourceCode`](https://github.com/tafo/BoggleSolver/tree/TrieSolver)
+[`Version-TrieSolver`](https://github.com/tafo/BoggleSolver/tree/TrieSolver)
 ```
 Trie?
 {
@@ -446,6 +473,13 @@ Result?
 Satisfied(?)
 {
     Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
     No  => Next()
 }
 ```
@@ -539,6 +573,13 @@ Result?
 Satisfied(?)
 {
     Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
     No  => Next()
 }
 ```
@@ -609,7 +650,7 @@ Result?
 ```
 Satisfied(?)
 {
-    Yes
+    Yes => (:
     {
         Impressed(?)
         {
@@ -617,7 +658,6 @@ Satisfied(?)
             No  => Next()
         }
     }
-
     No  => Next()
 }
 ```
@@ -760,7 +800,7 @@ Result?
 ```
 Satisfied(?)
 {
-    Yes
+    Yes => (:
     {
         Impressed(?)
         {
@@ -768,7 +808,6 @@ Satisfied(?)
             No  => Next()
         }
     }
-
     No  => Next()
 }
 ```
@@ -1205,58 +1244,75 @@ TrieSolver
 ```
 Result?
 {
-    I am satisfied (:
-    But
-    I am not impressed (;
-
-    So?
+    DoNot Repeat
     {
-        It is the time to do micro optimizations
+        DRs
+        {
+            DRY(DoNot Repeat Yourself),
+            ...        
+        }
     }
 }
 ```
-***
-**Optimization**
 ```
-DetailedCheck?
+Satisfied(?)
 {
-    Scan the code !!!
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
+    No  => Next()
+}
+```
+***
+**Object Oriented Coding**
+```
+Playing With Objects
+{
+    Extensible?
+
+    Closer to RealLife?
+
+    ...
 }
 ```
 ```
 Simply!
 {
-    Run() calls Chain 
-    Chain calls itself again and again
+    Run() calls Chain() 
+    Chain() calls itself again and again
     {
-        So?
+        Chain method calculates the indexes of available adjacent cells again and again
         {
-            Chain method calculates available adjacent cells again and again
+            Using calculated indexes
             {
-                So?
-                {
-                    Implement BoggleCell !
-                }
+                Implement a BoggleCell class
+                &
+                MapBoggleCells()
             }
-        }        
+        }
     }
 }
 ```
-[CellSolver](https://github.com/tafo/boggle-solver/tree/CellSolver)
+[`Version-CellSolver`](https://github.com/tafo/BoggleSolver/tree/CellSolver)
 ```
 TrieSolver vs CellSolver
 {
     Windows 10.0.18362.959 (1903/May2019Update/19H1)
     Intel Core i7-4720HQ CPU 2.60GHz (Haswell), 1 CPU, 8 logical and 4 physical cores
 
-    Dict
+    Dictionaries
     {
         Maxi    = 281,279 Words
         Midi    = 129,552 Words
         Mini    =  39,096 Words    
     }
 
-    Boggles
+    Solved Boggles
     {
         "Mini": [
             [ "S", "E", "R", "S" ],
@@ -1264,8 +1320,7 @@ TrieSolver vs CellSolver
             [ "L", "I", "N", "E" ],
             [ "S", "E", "R", "S" ]
         ]
-    },
-    {
+
         "Midi": [
             [ "R", "S", "C", "L", "S" ],
             [ "D", "E", "I", "A", "E" ],
@@ -1273,8 +1328,7 @@ TrieSolver vs CellSolver
             [ "I", "A", "E", "S", "O" ],
             [ "L", "M", "I", "D", "C" ]
         ]
-    },
-    {
+
         "Maxi": [
             [ "D", "S", "R", "O", "D", "G" ],
             [ "T", "E", "M", "E", "N", "S" ],
@@ -1282,7 +1336,15 @@ TrieSolver vs CellSolver
             [ "D", "G", "N", "T", "R", "P" ],
             [ "R", "E", "I", "A", "E", "S" ],
             [ "T", "S", "C", "L", "P", "D" ]
-        ]
+
+        "Mino": [
+            [ "D", "S", "R", "O", "D", "G", "T" ],
+            [ "T", "E", "M", "E", "N", "S", "A" ],
+            [ "R", "A", "S", "I", "T", "O", "F" ],
+            [ "D", "G", "N", "T", "R", "P", "O" ],
+            [ "R", "E", "I", "A", "E", "S", "F" ],
+            [ "T", "S", "C", "L", "P", "D", "A" ],
+            [ "T", "A", "F", "O", "F", "A", "T" ]
     }
 
     Run Strategy
@@ -1291,44 +1353,44 @@ TrieSolver vs CellSolver
     }
 }
 ```
-1 us : 1 Microsecond (0.000001 sec)
-
-|     Method | DictionarySize | BoggleSize |        Mean |     Error |    StdDev |
-|----------- |--------------- |----------- |------------:|----------:|----------:|
-| TrieSolver | DictionaryMaxi | BoggleMaxi | 38,935.1 us | 778.61 us | 926.88 us |
-| CellSolver | DictionaryMaxi | BoggleMaxi |  2,251.3 us |  44.39 us |  59.26 us |
-| TrieSolver | DictionaryMaxi | BoggleMidi | 17,875.1 us | 191.64 us | 179.26 us |
-| CellSolver | DictionaryMaxi | BoggleMidi |  1,482.8 us |  17.27 us |  15.31 us |
-| TrieSolver | DictionaryMaxi | BoggleMini |  4,874.0 us |  30.65 us |  25.60 us |
-| CellSolver | DictionaryMaxi | BoggleMini |    944.4 us |  18.37 us |  25.14 us |
-| TrieSolver | DictionaryMidi | BoggleMaxi | 26,997.0 us | 285.81 us | 267.34 us |
-| CellSolver | DictionaryMidi | BoggleMaxi |  2,250.5 us |  44.96 us |  49.97 us |
-| TrieSolver | DictionaryMidi | BoggleMidi | 12,323.6 us |  62.20 us |  58.19 us |
-| CellSolver | DictionaryMidi | BoggleMidi |  1,447.5 us |  16.85 us |  14.07 us |
-| TrieSolver | DictionaryMidi | BoggleMini |  3,556.8 us |  22.50 us |  19.94 us |
-| CellSolver | DictionaryMidi | BoggleMini |    938.9 us |  12.97 us |  11.50 us |
-| TrieSolver | DictionaryMini | BoggleMaxi | 11,935.9 us | 236.23 us | 367.79 us |
-| CellSolver | DictionaryMini | BoggleMaxi |  2,175.8 us |  20.15 us |  18.85 us |
-| TrieSolver | DictionaryMini | BoggleMidi |  5,479.0 us |  25.57 us |  19.96 us |
-| CellSolver | DictionaryMini | BoggleMidi |  1,442.5 us |  13.97 us |  13.07 us |
-| TrieSolver | DictionaryMini | BoggleMini |  1,786.9 us |  16.19 us |  15.15 us |
-| CellSolver | DictionaryMini | BoggleMini |    904.1 us |   7.33 us |   6.49 us |
+|     Method | DictionarySize |      Mean |    Error |   StdDev |
+|----------- |--------------- |----------:|---------:|---------:|
+| TrieSolver |           Maxi | 114.36 ms | 0.335 ms | 0.280 ms |
+| CellSolver |           Maxi | 121.06 ms | 0.823 ms | 0.769 ms |
+| TrieSolver |           Midi |  76.30 ms | 0.444 ms | 0.370 ms |
+| CellSolver |           Midi |  83.75 ms | 0.829 ms | 0.776 ms |
+| TrieSolver |           Mini |  34.35 ms | 0.276 ms | 0.230 ms |
+| CellSolver |           Mini |  38.51 ms | 0.395 ms | 0.350 ms |
 ```
 Result?
 {
-    Satisfied(?)
+    Even if CellSolver is a more elegant solution than TrieSolver, it is not faster
     {
-        No  => ?, Next()
-        Yes => (:
+        Why?
         {
-            Impressed(?)
-            {
-                No  => ?, Next()
-                Yes => (:
-            }
+            continue
         }
     }
 }
 ```
+
+```
+?
+```
+
+```
+Satisfied(?)
+{
+    Yes => (:
+    {
+        Impressed(?)
+        {
+            Yes => (:
+            No  => Next()
+        }
+    }
+    No  => Next()
+}
+```
 ***
-** ??? **
+**Micro Optimization**
