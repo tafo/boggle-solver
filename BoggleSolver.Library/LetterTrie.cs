@@ -34,18 +34,5 @@ namespace BoggleSolver.Library
             Letters.Add(trie);
             return trie;
         }
-
-        public int Check(string chain)
-        {
-            var i = 0;
-            var trie = this;
-            do
-            {
-                trie = trie[chain[i++]];
-            } while (trie != null && i < chain.Length);
-
-            if (trie == null) return -1;
-            return trie.IsLastLetter ? 1 : 0;
-        }
     }
 }

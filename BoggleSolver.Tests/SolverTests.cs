@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Linq;
 using BoggleSolver.Library;
 using FluentAssertions;
 using Xunit;
@@ -26,18 +25,12 @@ namespace BoggleSolver.Tests
             {
                 RootTrie = WordBook.Maxi.GetLetterTrie()
             };
+
             var timer = Stopwatch.StartNew();
-            var results = _testData.Boggles.ToDictionary(boggle => boggle,
-                boggle => solver.Run(boggle).SetChainCounter(solver.ChainCounter));
+            Array.ForEach(_testData.Boggles, boggle => solver.Run(boggle));
             timer.Stop();
 
             _testOutput.WriteLine($"Duration = {timer.ElapsedTicks}");
-            _testOutput.WriteLine(Environment.NewLine);
-            foreach (var (boggle, result) in results)
-            {
-                _testOutput.WriteLine($"{boggle}");
-                _testOutput.WriteLine($"Checked {result.ChainCounter} chains");
-            }
         }
 
         [Fact]
@@ -49,17 +42,10 @@ namespace BoggleSolver.Tests
             };
 
             var timer = Stopwatch.StartNew();
-            var results = _testData.Boggles.ToDictionary(boggle => boggle,
-                boggle => solver.Run(boggle).SetChainCounter(solver.ChainCounter));
+            Array.ForEach(_testData.Boggles, boggle => solver.Run(boggle));
             timer.Stop();
 
             _testOutput.WriteLine($"Duration = {timer.ElapsedTicks}");
-            _testOutput.WriteLine(Environment.NewLine);
-            foreach (var (boggle, result) in results)
-            {
-                _testOutput.WriteLine($"{boggle}");
-                _testOutput.WriteLine($"Checked {result.ChainCounter} chains");
-            }
         }
 
         [Fact]
@@ -69,21 +55,14 @@ namespace BoggleSolver.Tests
             {
                 RootTrie = WordBook.Test.GetLetterTrie()
             };
-            var timer = Stopwatch.StartNew();
-            var results = _testData.Boggles.ToDictionary(boggle => boggle,
-                boggle => solver.Run(boggle).SetChainCounter(solver.ChainCounter));
-            timer.Stop();
 
-            _testOutput.WriteLine($"Duration = {timer.ElapsedTicks}");
-            _testOutput.WriteLine(Environment.NewLine);
-            foreach (var (boggle, result) in results)
+            Array.ForEach(_testData.Boggles, boggle =>
             {
-                _testOutput.WriteLine($"{boggle}");
-                _testOutput.WriteLine($"Checked {result.ChainCounter} chains");
-                _testOutput.WriteLine($"Score = {result.Score}");
+                var result = solver.Run(boggle);
+                _testOutput.WriteLine($"{solver.ChainCounter} chains");
                 result.Words.Count.Should().Be(boggle.Count);
                 result.Score.Should().Be(boggle.Score);
-            }
+            });
         }
 
         [Fact]
@@ -93,21 +72,14 @@ namespace BoggleSolver.Tests
             {
                 RootTrie = WordBook.Test.GetLetterTrie()
             };
-            var timer = Stopwatch.StartNew();
-            var results = _testData.Boggles.ToDictionary(boggle => boggle,
-                boggle => solver.Run(boggle).SetChainCounter(solver.ChainCounter));
-            timer.Stop();
 
-            _testOutput.WriteLine($"Duration = {timer.ElapsedTicks}");
-            _testOutput.WriteLine(Environment.NewLine);
-            foreach (var (boggle, result) in results)
+            Array.ForEach(_testData.Boggles, boggle =>
             {
-                _testOutput.WriteLine($"{boggle}");
-                _testOutput.WriteLine($"Checked {result.ChainCounter} chains");
-                _testOutput.WriteLine($"Score = {result.Score}");
+                var result = solver.Run(boggle);
+                _testOutput.WriteLine($"{solver.ChainCounter} chains");
                 result.Words.Count.Should().Be(boggle.Count);
                 result.Score.Should().Be(boggle.Score);
-            }
+            });
         }
     }
 }
