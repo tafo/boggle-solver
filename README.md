@@ -3,7 +3,7 @@ FindChainMethod  => DepthFirstSearch
 
 CheckChainMethod => Binary Search
 {
-    Dictionaries are already sorted!
+    Dictionaries are already sorted! (Name, !Date)
 }
 
 SlowSolver vs BinarySolver
